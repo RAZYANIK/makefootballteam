@@ -1,0 +1,6138 @@
+
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr" wf-loading>
+    <head>
+        
+    
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="shortcut icon" type="image/png" href="/assets/images/favicon.png">
+
+
+    <script>
+        window.newrelicAttributes = {
+            accountId: "1796917",
+            trustKey: "1796917",
+            agentId: "149134891",
+            licenseKey: "f701a6c63c",
+            applicationId: "149134891"
+        };
+    </script>
+    <script src="/newrelic.js"></script>
+
+
+
+<!-- Compliant Google Optimize -->
+<script>
+        (() => {
+            const getPrivacyCookie = () => {
+                const privacyCookie = document.cookie.match('(^|;)\\s*cmapi_cookie_privacy\\s*=\\s*([^;]+)');
+
+                return privacyCookie ? privacyCookie.pop() : null;
+            };
+
+            const getBehaviorCookie = () => {
+                const behaviorCookie = document.cookie.match('(^|;)\\s*notice_behavior\\s*=\\s*([^;]+)');
+
+                return behaviorCookie ? behaviorCookie.pop() : null;
+            };
+
+            const hasOptedIn = () => {
+                const behaviorCookie = getBehaviorCookie();
+                const privacyCookie = getPrivacyCookie();
+
+                return behaviorCookie && behaviorCookie.match(/^none$/) || privacyCookie && privacyCookie.match(/2|3/);
+            }
+
+            const appendOptimize = () => {
+                const head = document.getElementsByTagName('head')[0];
+
+                if (head) {
+                    const script = document.createElement('script');
+
+                    script.src = 'https://www.googleoptimize.com/optimize.js?id=GTM-M6BQF2W';
+                    script.id = "google-optimize"
+                    head.append(script);
+                }
+            };
+
+            const removeOptimize = () => {
+                const head = document.getElementsByTagName('head')[0];
+                const optimizeScript = document.getElementById('google-optimize');
+
+                if (head && optimizeScript) {
+                    head.removeChild(optimizeScript);
+                }
+            }
+
+            /**
+             * Append or remove Google Optimize script to head,
+             * depending on whether user's cookie preferences
+             * have opted in and Google Optimize script already
+             * exists in head.
+             */
+            const handleConsentDecision = () => {
+                const googleOptimizeScript = document.getElementById('google-optimize');
+                if (hasOptedIn() && !googleOptimizeScript) {
+                    appendOptimize();
+                } else if (!hasOptedIn() && googleOptimizeScript) {
+                    removeOptimize();
+                }
+            }
+
+            /**
+             * Callbacks will occur in the form of a PostMessage event. This code listens for the
+             * appropriately formatted PostMessage event, gets the new consent decision, and then sets
+             * the new cookie preferences.
+             */
+            const handlePreferencesUpdated = (e) => {
+                try {
+                    const { capabilities, action } = JSON.parse(e.data).PrivacyManagerAPI || {};
+                    if (capabilities && action === 'getConsentDecision') {
+                        handleConsentDecision();
+                    }
+                } catch (error) {
+                    console.error(error);
+                }
+            }
+
+            /**
+             * Registers with the TrustArc Content Manager (CM) API to receive callbacks when
+             * a preference update occurs, and initialized dispatched preferences array to
+             * the user's current preferences. You must wait for the CM API (PrivacyManagerAPI object)
+             * to exist on the page before registering.
+             */
+            const CMICallbackRegister = () => {
+                const interval = setInterval(() => {
+                    if (window.PrivacyManagerAPI && interval) {
+                        const apiObject = {
+                            PrivacyManagerAPI: {
+                                action: 'getConsentDecision',
+                                timestamp: new Date().getTime(),
+                                self: window.location.host
+                            }
+                        };
+                        window.top.postMessage(JSON.stringify(apiObject), '*');
+                        clearInterval(interval);
+                    }
+                }, 50);
+            }
+
+            /**
+             * Listener registers a message callback on the TrustArc Content Manager when
+             * user's cookie preferences are updated and adds an event listener
+             * on the message events that occur when said preference updates occur.
+             */
+            const trustArcScriptLoadListener = () => {
+                if (typeof window.truste === 'object') {
+                    CMICallbackRegister();
+                    window.addEventListener('message', handlePreferencesUpdated);
+                }
+            }
+
+            window.addEventListener('load', trustArcScriptLoadListener);
+            const behaviorCookie = getBehaviorCookie();
+
+            if (behaviorCookie === null) {
+                // wait for TrustArc script to load before checking cookies
+                let numIntervals = 0;
+                const scriptLoadInterval = setInterval( () => {
+                    if(getBehaviorCookie()) {
+                        handleConsentDecision();
+                        clearInterval(scriptLoadInterval);
+                    }
+                    // Stop running interval after 8 times (8x the documented 500ms it
+                    // should take to load the TrustArc script on the BE) to prevent running forever
+                    if (++numIntervals >= 10) {
+                        clearInterval(scriptLoadInterval);
+                    }
+                } , 500);
+            } else {
+                handleConsentDecision();
+            }
+        })();
+</script>
+    <!-- End Compliant Google Optimize -->
+
+
+<!-- Google Tag Manager -->
+<script>
+    (function(w, d, s, l) {
+        w[l] = w[l] || [];
+        w[l].push({
+            'gtm.start': new Date().getTime(),
+            event: 'gtm.js'
+        });
+
+        var f = d.getElementsByTagName(s)[0];
+        var j = d.createElement(s);
+        var dl = l !== 'dataLayer' ? '&l=' + l : '';
+
+        j.async = true;
+        j.src = 'https://www.googletagmanager.com/gtm.js?id=GTM-TG32RCX' + dl;
+        f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer');
+</script>
+<!-- End Google Tag Manager -->
+
+
+
+<style>
+    [unresolved] {
+        visibility: hidden !important;
+    }
+</style>
+
+
+<noscript>
+    <style>
+        [unresolved] {
+            visibility: visible !important;
+        }
+    </style>
+</noscript>
+
+<style>
+    body {
+        margin: 0;
+    }
+
+    .image img {
+        max-width: 100%;
+    }
+</style>
+
+
+<script>
+    
+    if (!CSS.supports('width', 'calc((var(--test))')) {
+        window.ShadyCSS = {
+            shimcssproperties: true
+        };
+    }
+
+    document.addEventListener('nds.typeKit.active', function() {
+        document.querySelector('html').removeAttribute('wf-loading');
+    });
+</script>
+
+<script src="//unpkg.com/@webcomponents/webcomponentsjs@2.2.7/webcomponents-loader.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/masonry/4.2.2/masonry.pkgd.min.js"></script>
+<script src="//w.soundcloud.com/player/api.js"></script>
+
+
+
+
+
+
+<script>
+    window.nds = window.nds || {};
+    window.nds.componentUrlPrefix = '//pl.ea.com/release/4.46.0/elements/ea-elements.min.js'.substring(0, '//pl.ea.com/release/4.46.0/elements/ea-elements.min.js'.lastIndexOf('/') + 1);
+    window.nds.contentfulUrl = 'https://contentful-proxy.juno.ea.com/graphql';
+    window.nds.salUrl = 'https://service-aggregation-layer.juno.ea.com/graphql';
+    window.nds.useApq = true;
+    window.nds.salClientId = 'eacom-fe';
+    window.nds.xGameDistMethod = 'eacom';
+    window.nds.lockboxGameId = 'eacom';
+    window.nds.lockboxInvoiceSource = 'EACOM-STORE-WEB-%countryCode%';
+    window.nds.lockboxExternalPaymentPath = '/lockbox-external-payment';
+</script>
+<script type="module" src="//pl.ea.com/release/4.46.0/elements/ea-elements.min.js"></script>
+<script nomodule defer src="//pl.ea.com/release/4.46.0/elements/ea-elements.min.js"></script>
+
+
+
+    
+        
+            
+                <link href="https://fast.fonts.net/cssapi/37bb6320-c5d5-4118-be08-fdbf0561450c.css" rel="stylesheet" />
+            
+                <link href="https://fast.fonts.net/cssapi/37bb6320-c5d5-4118-be08-fdbf0561450c.css" rel="stylesheet" />
+            
+                <style>   ea-text p {     margin: 0;   }   ea-text p + p, ea-text h3 + p {     margin: 1rem 0 0 0;   }   ea-text p + h3 {     margin: 2rem 0 0 0;     padding-top: 1rem;     border-top: 1px dashed var(--ea-light-color);   }   ea-text h3 {     margin: 0;   }   ea-text hr {     margin: 4rem 0 2rem 0;     height: 4px;     background: white;     border: 0;   }   ea-text table {     border-top: 2px solid var(--ea-light-color);     border-bottom: 2px solid var(--ea-light-color);     margin: 2rem 0;     text-align: left;     width: 100%;     border-collapse: collapse;   }   ea-text th {     padding: 8px 0;     text-transform: uppercase;     font-weight: bolder;     min-width: 80px;     max-width: 640px;     vertical-align: top;   }   ea-text th + th, ea-text td + td {     padding-left: 8px;   }   ea-text tr, td {     padding: 8px 0;     vertical-align: middle;     min-width: 80px;     max-width: 640px;   }   ea-text tr:last-of-type td {     padding-bottom: 8px;   }   ea-text tr {     border-top: 1px dashed var(--ea-light-color);   }   @media only screen and (min-width: 1024px) {     ea-text table {       width: auto;     }     ea-text th {       min-width: 240px;     }   } </style>
+            
+        
+    
+
+<style>
+    @font-face {
+    font-family: 'ElectronicArtsDisplay';
+    src: url(/assets/fonts/display/ElectronicArtsDisplay-Regular.woff2) format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'ElectronicArtsDisplay';
+    src: url(/assets/fonts/display/ElectronicArtsDisplay-Bold.woff2) format('woff');
+    font-weight: 600;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'ElectronicArtsText';
+    src: url(/assets/fonts/text/ElectronicArtsText-Light.woff2) format('woff');
+    font-weight: 300;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'ElectronicArtsText';
+    src: url(/assets/fonts/text/ElectronicArtsText-LightItalic.woff2) format('woff');
+    font-weight: 300;
+    font-style: italic;
+}
+@font-face {
+    font-family: 'ElectronicArtsText';
+    src: url(/assets/fonts/text/ElectronicArtsText-Regular.woff2) format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'ElectronicArtsText';
+    src: url(/assets/fonts/text/ElectronicArtsText-Italic.woff2) format('woff');
+    font-weight: 400;
+    font-style: italic;
+}
+@font-face {
+    font-family: 'ElectronicArtsText';
+    src: url(/assets/fonts/text/ElectronicArtsText-Bold.woff2) format('woff');
+    font-weight: 600;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'ElectronicArtsText';
+    src: url(/assets/fonts/text/ElectronicArtsText-BoldItalic.woff2) format('woff');
+    font-weight: 600;
+    font-style: italic;
+}
+
+</style>
+
+
+
+
+
+
+    <title>FIFA 22 Ratings - Best LaLiga Santander Players - EA SPORTS Official Site</title>
+    
+
+    <link rel="canonical" href="https://www.ea.com/en-au/games/fifa/fifa-22/news/fifa-22-player-ratings-la-liga-santander" />
+
+    
+        
+
+
+
+    
+        <link rel="amphtml" href="https://www.ea.com/en-au/games/fifa/fifa-22/amp/news/fifa-22-player-ratings-la-liga-santander">
+    
+
+
+    
+
+
+<meta property="og:type" content="article">
+<meta property="og:title" content="FIFA 22 Ratings - Best LaLiga Santander Players - EA SPORTS Official Site">
+<meta property="og:description" content="See the highest rated LaLiga Santander players in FIFA 22, including Jan Oblak, Karim Benzema, Casemiro, Luis Suárez, David Alaba, and more.">
+<meta property="og:url" content="https://www.ea.com/en-au/games/fifa/fifa-22/news/fifa-22-player-ratings-la-liga-santander
+">
+<meta property="og:site_name" content="Electronic Arts Inc.">
+
+    <meta property="og:image" content="https://media.contentapi.ea.com/content/dam/ea/fifa/fifa-22/news/common/ratings-reveal/ratings-reveal-laliga-santander/laliga-featured-image-16x9.png.adapt.crop191x100.628p.png">
+
+
+
+<meta name="description" content="See the highest rated LaLiga Santander players in FIFA 22, including Jan Oblak, Karim Benzema, Casemiro, Luis Suárez, David Alaba, and more.">
+<meta name="author" content="Electronic Arts">
+<meta property="article:modified_time" content="2021-09-15T22:53:49Z">
+<meta property="article:published_time" content="2021-09-15T15:00Z">
+
+
+
+
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@ea">
+<meta name="twitter:title" content="FIFA 22 Ratings - Best LaLiga Santander Players - EA SPORTS Official Site">
+<meta name="twitter:description" content="See the highest rated LaLiga Santander players in FIFA 22, including Jan Oblak, Karim Benzema, Casemiro, Luis Suárez, David Alaba, and more.">
+
+    <meta name="twitter:image" content="https://media.contentapi.ea.com/content/dam/ea/fifa/fifa-22/news/common/ratings-reveal/ratings-reveal-laliga-santander/laliga-featured-image-16x9.png.adapt.crop16x9.575p.png">
+
+<meta name="twitter:creator" content="@ea">
+
+<script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "Article",
+     
+"image": {
+    "@type": "ImageObject",
+    "url": "https://media.contentapi.ea.com/content/dam/ea/fifa/fifa-22/news/common/ratings-reveal/ratings-reveal-laliga-santander/laliga-featured-image-16x9.png.adapt.crop191x100.628p.png"
+},
+ 
+    "author": {
+      "@type": "Organization",
+      "name": "Electronic Arts",
+      "sameAs": "https://en.wikipedia.org/wiki/Electronic_Arts"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "Electronic Arts",
+        "sameAs": "https://en.wikipedia.org/wiki/Electronic_Arts",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://media.contentapi.ea.com/content/dam/ea/EA_logo.png",
+            "width": 60,
+            "height": 60
+        }
+    },
+    "inLanguage": "en",
+    "description": "See the highest rated LaLiga Santander players in FIFA 22, including Jan Oblak, Karim Benzema, Casemiro, Luis Suárez, David Alaba, and more.",
+    "datePublished": "2021-09-15T15:00Z",
+    "dateModified": "2021-09-15T22:53:49Z",
+    "headline": "FIFA 22 Ratings - Best LaLiga Santander Players - EA SPORTS Official Site",
+    "url": "https://www.ea.com/en-au/games/fifa/fifa-22/news/fifa-22-player-ratings-la-liga-santander
+"
+}
+</script>
+
+
+
+    <script >bazadebezolkohpepadr="262285903"</script><script type="text/javascript" src="https://www.ea.com/akam/13/fa228cb"  defer></script></head>
+    <body unresolved>
+        
+    
+
+
+<custom-style><style include="ea-shared-styles-base-common"></style></custom-style>
+<custom-style><style include="ea-shared-styles-base-headings"></style></custom-style>
+<custom-style><style include="ea-shared-styles-base-lists"></style></custom-style>
+<custom-style><style include="ea-shared-styles-base-links"></style></custom-style>
+<custom-style><style include="ea-shared-styles-base-images"></style></custom-style>
+<custom-style><style include="ea-shared-styles-typography-headings"></style></custom-style>
+<custom-style><style include="ea-shared-styles-typography-paragraphs"></style></custom-style>
+<custom-style><style include="ea-shared-styles-typography-labels"></style></custom-style>
+
+
+    
+        
+            <custom-style>
+                <style>
+                    html {
+                        
+                            --ea-theme-primary-font-family: DIN W05 Regular;
+                        
+                            --ea-theme-secondary-font-family: DIN W05 Regular;
+                        
+                            --ea-theme-tabs-tab-text-transform: none;
+                        
+                            --fifa21-brand-violet: #8A4FFF;
+                        
+                            --fifa21-brand-mint: #29FFC9;
+                        
+                            --fifa21-brand-orange: #FF5114;
+                        
+                            --fifa21-brand-obsidan: #201E20;
+                        
+                            --fifa21-brand-FUT: #E518FB;
+                        
+                            --fifa21-brand-VOLTA: #13F0FE;
+                        
+                            --ea-theme-color: var(--fifa22-acid-green);
+                        
+                            --ea-theme-dark-gradient: var(--fifa22-brand-blue);
+                        
+                            --ea-theme-light-gradient: var(--fifa22-brand-blue);
+                        
+                            --ea-theme-body-font-size-mobile: 15px;
+                        
+                            --ea-theme-body-line-height-mobile: 160%;
+                        
+                            --ea-theme-body-font-size-tablet-landscape: 16px;
+                        
+                            --ea-theme-body-line-height-tablet-landscape: 160%;
+                        
+                            --ea-theme-body-font-size-desktop: 19px;
+                        
+                            --ea-theme-body-line-height-desktop: 148%;
+                        
+                            --ea-theme-h4-font-size-tablet-landscape: 20px;
+                        
+                            --ea-theme-stream-ui-paddle-default: #878787;
+                        
+                            --ea-theme-d1-font-style: var(--font-style-typographic-headings);
+                        
+                            --ea-theme-d2-font-style: var(--font-style-typographic-headings);
+                        
+                            --ea-theme-d3-font-style: var(--font-style-typographic-headings);
+                        
+                            --ea-theme-d4-font-style: var(--font-style-typographic-headings);
+                        
+                            --ea-theme-d5-font-style: var(--font-style-typographic-headings);
+                        
+                            --ea-theme-d6-font-style: var(--font-style-typographic-headings);
+                        
+                            --ea-theme-l1-font-size-desktop: 24px;
+                        
+                            --ea-theme-l1-font-size-tablet-landscape: 20px;
+                        
+                            --ea-light-color: #FFFFFF;
+                        
+                            --ea-text-case: uppercase;
+                        
+                            --nintendo-brand-color: var(--ea-light-color);
+                        
+                            --ea-theme-label-font-weight: 500;
+                        
+                            --origin-brand-color: #FF4747;
+                        
+                            --scroll-margin-top: 100px;
+                        
+                            --ea-theme-header-font-family: var(--ea-theme-secondary-font-family);
+                        
+                            --ea-theme-header-font-weight-normal: normal;
+                        
+                            --ea-theme-header-font-weight-bold: bolder;
+                        
+                            --ea-theme-header-letter-spacing: normal;
+                        
+                            --ea-theme-body-font-family: var(--ea-theme-primary-font-family);
+                        
+                            --ea-theme-body-font-weight-light: lighter;
+                        
+                            --ea-theme-body-font-weight-normal: normal;
+                        
+                            --ea-theme-body-font-weight-bold: bolder;
+                        
+                            --ea-theme-body-letter-spacing: normal;
+                        
+                            --ea-theme-typographic-headings-font-family: Rifton W05 Norm;
+                        
+                            --ea-theme-display-font-style: italic;
+                        
+                            --ea-theme-l1-font-weight: 500;
+                        
+                            --ea-theme-l2-font-weight: 500;
+                        
+                            --ea-theme-l3-font-weight: 500;
+                        
+                            --ea-theme-l4-font-weight: 500;
+                        
+                            --ea-theme-h1-font-weight: 200;
+                        
+                            --ea-theme-h2-font-weight: bolder;
+                        
+                            --ea-theme-h3-font-weight: var(--headings-weight);
+                        
+                            --ea-theme-h4-font-weight: 300;
+                        
+                            --ea-theme-h5-font-weight: 300;
+                        
+                            --ea-theme-h6-font-weight: 300;
+                        
+                            --ea-theme-d1-font-weight: 500;
+                        
+                            --ea-theme-d2-font-weight: 500;
+                        
+                            --ea-theme-d3-font-weight: 500;
+                        
+                            --ea-theme-d4-font-weight: 500;
+                        
+                            --ea-theme-d5-font-weight: 500;
+                        
+                            --ea-theme-d6-font-weight: 500;
+                        
+                            --fifa-animation-timing-long: 1600ms;
+                        
+                            --ea-access-brand-color: var(--ea-dark-color);
+                        
+                            --fifa22-brand-blue: #1E41AF;
+                        
+                            --ea-dark-color: #1C1F26;
+                        
+                            --fifa22-muted-blue: #E8F4EA;
+                        
+                            --fifa22-blue: #1E41AF;
+                        
+                            --fifa22-acid-green: #C4F750;
+                        
+                            --ea-theme-local-nav-font-color-hover: var(--fifa22-blue);
+                        
+                            --headings-weight: 600;
+                        
+                            --font-style-typographic-headings: normal;
+                        
+                            --fifa-feature-spacer-XS: 26vw;
+                        
+                            --fifa-feature-spacer-S: 26vw;
+                        
+                            --fifa-feature-spacer-M: 10vw;
+                        
+                            --fifa-feature-spacer-L: 14vw;
+                        
+                            --fifa-feature-spacer-XL: 14vw;
+                        
+                            --fifa-primary-spacer-XS: 48px;
+                        
+                            --fifa-primary-spacer-S: 48px;
+                        
+                            --fifa-primary-spacer-M: 64px;
+                        
+                            --fifa-primary-spacer-L: 90px;
+                        
+                            --fifa-primary-spacer-XL: 90px;
+                        
+                            --fifa-secondary-spacer-XS: 32px;
+                        
+                            --fifa-secondary-spacer-S: 32px;
+                        
+                            --fifa-secondary-spacer-M: 48px;
+                        
+                            --fifa-secondary-spacer-L: 56px;
+                        
+                            --fifa-secondary-spacer-XL: 64px;
+                        
+                            --fifa-tertiary-spacer-XS: 20px;
+                        
+                            --fifa-tertiary-spacer-S: 20px;
+                        
+                            --fifa-tertiary-spacer-M: 24px;
+                        
+                            --fifa-tertiary-spacer-L: 28px;
+                        
+                            --fifa-tertiary-spacer-XL: 32px;
+                        
+                            --ea-theme-d2-line-height-mobile: 107%;
+                        
+                            --ea-theme-d3-line-height-mobile: 107%;
+                        
+                            --ea-theme-d4-line-height-mobile: 107%;
+                        
+                            --ea-theme-d5-line-height-mobile: 107%;
+                        
+                            --ea-theme-d6-line-height-mobile: 107%;
+                        
+                            --ea-theme-tile-title-font-family: var(--ea-theme-primary-font-family);
+                        
+                            --ea-theme-d1-line-height-mobile: 107%;
+                        
+                            --ea-theme-d1-font-size-mobile: 19px;
+                        
+                            --ea-theme-d1-font-size-tablet-portrait: 36px;
+                        
+                            --ea-theme-d1-font-size-tablet-landscape: 49px;
+                        
+                            --ea-theme-d1-font-size-desktop: 61px;
+                        
+                            --ea-theme-d2-font-size-mobile: 27px;
+                        
+                            --ea-theme-d2-font-size-tablet-portrait: 34px;
+                        
+                            --ea-theme-d2-font-size-tablet-landscape: 46px;
+                        
+                            --ea-theme-d2-font-size-desktop: 50px;
+                        
+                            --ea-theme-d3-font-size-mobile: 27px;
+                        
+                            --ea-theme-d3-font-size-tablet-portrait: 30px;
+                        
+                            --ea-theme-d3-font-size-tablet-landscape: 36px;
+                        
+                            --ea-theme-d3-font-size-desktop: 40px;
+                        
+                            --ea-theme-d3-line-height-desktop: 100%;
+                        
+                            --ea-theme-d4-font-size-mobile: 25px;
+                        
+                            --ea-theme-d4-font-size-tablet-portrait: 26px;
+                        
+                            --ea-theme-d4-font-size-tablet-landscape: 32px;
+                        
+                            --ea-theme-d4-font-size-desktop: 36px;
+                        
+                            --ea-theme-b2-line-height-tablet-portrait: 150%;
+                        
+                            --ea-theme-local-nav-shelf-header-font-size-desktop: 17px;
+                        
+                            --ea-theme-local-nav-shelf-header-font-size-tablet-landscape: 15px;
+                        
+                            --ea-theme-local-nav-link-selected-color-mobile-dark: var(--fifa22-blue);
+                        
+                            --ea-theme-local-nav-current-link-color-mobile-dark: var(--fifa22-blue);
+                        
+                            --ea-theme-local-nav-category-unselected-color-mobile-dark: #737373;
+                        
+                            --ea-theme-countdown-clock-digit-font-family: var(--ea-theme-typographic-headings-font-family);
+                        
+                            --ea-theme-countdown-clock-digit-font-size: 90px;
+                        
+                            --ea-theme-countdown-clock-units-font-family: DIN W05 Bold;
+                        
+                            --ea-theme-countdown-clock-units-font-size: 27px;
+                        
+                            --headings-margins-desktop: 40px auto 10px;
+                        
+                            --ea-theme-h2-margin-desktop: var(--headings-margins-desktop);
+                        
+                            --ea-theme-h3-margin-desktop: var(--headings-margins-desktop);
+                        
+                            --ea-theme-h4-margin-desktop: var(--headings-margins-desktop);
+                        
+                            --ea-theme-h5-margin-desktop: var(--headings-margins-desktop);
+                        
+                            --ea-theme-h6-margin-desktop: var(--headings-margins-desktop);
+                        
+                            --headings-margins-tablet: 30px auto 6px ;
+                        
+                            --ea-theme-h2-margin-tablet-landscape: var(--headings-margins-tablet);
+                        
+                            --ea-theme-h3-margin-tablet-landscape: var(--headings-margins-tablet);
+                        
+                            --ea-theme-h4-margin-tablet-landscape: var(--headings-margins-tablet);
+                        
+                            --ea-theme-h5-margin-tablet-landscape: var(--headings-margins-tablet);
+                        
+                            --ea-theme-h6-margin-tablet-landscape: var(--headings-margins-tablet);
+                        
+                            --ea-theme-h2-margin-tablet-portrait: var(--headings-margins-tablet);
+                        
+                            --ea-theme-h3-margin-tablet-portrait: var(--headings-margins-tablet);
+                        
+                            --ea-theme-h4-margin-tablet-portrait: var(--headings-margins-tablet);
+                        
+                            --ea-theme-h5-margin-tablet-portrait: var(--headings-margins-tablet);
+                        
+                            --ea-theme-h6-margin-tablet-portrait: var(--headings-margins-tablet);
+                        
+                            --headings-margins-mobile: 30px auto 2px;
+                        
+                            --ea-theme-h2-margin-mobile: var(--headings-margins-mobile);
+                        
+                            --ea-theme-h3-margin-mobile: var(--headings-margins-mobile);
+                        
+                            --ea-theme-h4-margin-mobile: var(--headings-margins-mobile);
+                        
+                            --ea-theme-h5-margin-mobile: var(--headings-margins-mobile);
+                        
+                            --ea-theme-h6-margin-mobile: var(--headings-margins-mobile);
+                        
+                            --ea-theme-h3-font-size-mobile: 20px;
+                        
+                            --ea-theme-h3-font-size-tablet-landscape: 20px;
+                        
+                            --ea-theme-h3-font-size-desktop: 24px;
+                        
+                            --ea-theme-h3-line-height-mobile: 1.25;
+                        
+                            --ea-theme-h3-line-height-tablet-landscape: var(--ea-theme-h3-line-height-mobile);
+                        
+                            --ea-theme-h3-line-height-desktop: var(--ea-theme-h3-line-height-mobile);
+                        
+                            --ea-theme-h2-font-size-mobile: 22px;
+                        
+                            --ea-theme-h2-line-height-mobile: 28px;
+                        
+                            --ea-theme-h2-font-size-tablet-landscape: 24px;
+                        
+                            --ea-theme-h2-line-height-tablet-landscape: 36px;
+                        
+                            --ea-theme-h2-font-size-desktop: 30px;
+                        
+                            --ea-theme-h2-line-height-desktop: 41px;
+                        
+                    }
+                </style>
+            </custom-style>
+        
+    
+
+
+
+<ea-elements-loader elements="ea-network-nav, ea-player, ea-type-kit">
+</ea-elements-loader>
+
+
+    <ea-network-nav
+        unresolved
+        userData="/user-data"
+        content="//nds-network-nav.ea.com/en-au/network-nav"
+        login-url="/login"
+        logout-url="/logout"
+            
+                
+                    
+                        hide-logo
+                    
+                
+            
+    ></ea-network-nav>
+
+
+
+
+    
+        
+    
+
+
+
+
+    
+        
+            
+                
+
+    
+<ea-elements-loader elements="ea-local-nav-advanced, ea-link">
+</ea-elements-loader>
+<ea-local-nav-advanced
+    
+    
+        home-text = "EA SPORTS™ FIFA 22"
+        home-tooltip = "EA SPORTS™ FIFA 22"
+        home-link = "/en-au/games/fifa/fifa-22"
+    
+    
+        logo-image="https://media.contentapi.ea.com/content/dam/ea/fifa/fifa-22/fifa-22-shared-assets/common/fifa22-nav-logo.svg"
+    
+    
+    
+        theme = "dark"
+    
+    
+        shelf-type = "band"
+    
+    
+        open-drawer-text = "Menu"
+    
+    
+        close-drawer-text = "Close"
+    
+    
+        mini
+    
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    unresolved
+>
+    
+
+    
+
+    
+        <a title="EA SPORTS™ FIFA 22" href="/en-au/games/fifa/fifa-22">
+            EA SPORTS™ FIFA 22
+            
+                <img
+                    src="https://media.contentapi.ea.com/content/dam/ea/fifa/fifa-22/fifa-22-shared-assets/common/fifa22-nav-logo.svg"
+                    
+                />
+            
+        </a>
+    
+
+    
+        
+            
+<ea-elements-loader elements="ea-local-nav-shelf-sub-nav">
+</ea-elements-loader>
+<ea-local-nav-shelf-sub-nav
+    slot="local-nav-shelf-link"
+    toggle-text="ABOUT"
+    theme="dark"
+    type="narrow"
+    unresolved
+>
+    
+<ea-elements-loader elements="ea-local-nav-shelf-sub-nav-section">
+</ea-elements-loader>
+<ea-local-nav-shelf-sub-nav-section
+    title-text="About FIFA 22"
+    slot="sub-nav-section"
+    unresolved
+>
+    
+<ea-elements-loader elements="ea-local-nav-shelf-sub-nav-section-link">
+</ea-elements-loader>
+<ea-local-nav-shelf-sub-nav-section-link
+    slot="sub-nav-section-link"
+    link-text="Ambassadors"
+    link-href="/en-us/games/fifa/fifa-22/fifa-22-cover-athlete-and-ambassadors"
+    link-target="_self"
+    
+    unresolved
+>
+    <a href="/en-us/games/fifa/fifa-22/fifa-22-cover-athlete-and-ambassadors">Ambassadors</a>
+</ea-local-nav-shelf-sub-nav-section-link>
+
+<ea-elements-loader elements="ea-local-nav-shelf-sub-nav-section-link">
+</ea-elements-loader>
+<ea-local-nav-shelf-sub-nav-section-link
+    slot="sub-nav-section-link"
+    link-text="Club Packs"
+    link-href="https://fifa22-club-packs.ea.com/"
+    link-target="_blank"
+    
+    unresolved
+>
+    <a href="https://fifa22-club-packs.ea.com/">Club Packs</a>
+</ea-local-nav-shelf-sub-nav-section-link>
+
+<ea-elements-loader elements="ea-local-nav-shelf-sub-nav-section-link">
+</ea-elements-loader>
+<ea-local-nav-shelf-sub-nav-section-link
+    slot="sub-nav-section-link"
+    link-text="Unrivalled Authenticity"
+    link-href="/en-au/games/fifa/fifa-22/leagues-and-clubs-authenticity"
+    link-target="_self"
+    
+    unresolved
+>
+    <a href="/en-au/games/fifa/fifa-22/leagues-and-clubs-authenticity">Unrivalled Authenticity</a>
+</ea-local-nav-shelf-sub-nav-section-link>
+
+<ea-elements-loader elements="ea-local-nav-shelf-sub-nav-section-link">
+</ea-elements-loader>
+<ea-local-nav-shelf-sub-nav-section-link
+    slot="sub-nav-section-link"
+    link-text="Soundtrack"
+    link-href="/en-au/games/fifa/fifa-22/soundtrack"
+    link-target="_self"
+    
+    unresolved
+>
+    <a href="/en-au/games/fifa/fifa-22/soundtrack">Soundtrack</a>
+</ea-local-nav-shelf-sub-nav-section-link>
+
+<ea-elements-loader elements="ea-local-nav-shelf-sub-nav-section-link">
+</ea-elements-loader>
+<ea-local-nav-shelf-sub-nav-section-link
+    slot="sub-nav-section-link"
+    link-text="PC System Requirements"
+    link-href="/en-au/games/fifa/fifa-22/pc-system-requirements"
+    link-target="_self"
+    
+    unresolved
+>
+    <a href="/en-au/games/fifa/fifa-22/pc-system-requirements">PC System Requirements</a>
+</ea-local-nav-shelf-sub-nav-section-link>
+
+</ea-local-nav-shelf-sub-nav-section>
+
+<ea-elements-loader elements="ea-local-nav-shelf-sub-nav-section">
+</ea-elements-loader>
+<ea-local-nav-shelf-sub-nav-section
+    title-text="Features"
+    slot="sub-nav-section"
+    unresolved
+>
+    
+<ea-elements-loader elements="ea-local-nav-shelf-sub-nav-section-link">
+</ea-elements-loader>
+<ea-local-nav-shelf-sub-nav-section-link
+    slot="sub-nav-section-link"
+    link-text="Features Overview"
+    link-href="/en-us/games/fifa/fifa-22/new-features-and-modes"
+    link-target="_self"
+    
+    unresolved
+>
+    <a href="/en-us/games/fifa/fifa-22/new-features-and-modes">Features Overview</a>
+</ea-local-nav-shelf-sub-nav-section-link>
+
+<ea-elements-loader elements="ea-local-nav-shelf-sub-nav-section-link">
+</ea-elements-loader>
+<ea-local-nav-shelf-sub-nav-section-link
+    slot="sub-nav-section-link"
+    link-text="Gameplay Features"
+    link-href="/en-us/games/fifa/fifa-22/new-features-and-modes/gameplay-features"
+    link-target="_self"
+    
+    unresolved
+>
+    <a href="/en-us/games/fifa/fifa-22/new-features-and-modes/gameplay-features">Gameplay Features</a>
+</ea-local-nav-shelf-sub-nav-section-link>
+
+<ea-elements-loader elements="ea-local-nav-shelf-sub-nav-section-link">
+</ea-elements-loader>
+<ea-local-nav-shelf-sub-nav-section-link
+    slot="sub-nav-section-link"
+    link-text="HyperMotion"
+    link-href="/en-us/games/fifa/fifa-22/hypermotion"
+    link-target="_self"
+    
+    unresolved
+>
+    <a href="/en-us/games/fifa/fifa-22/hypermotion">HyperMotion</a>
+</ea-local-nav-shelf-sub-nav-section-link>
+
+</ea-local-nav-shelf-sub-nav-section>
+
+<ea-elements-loader elements="ea-local-nav-shelf-sub-nav-section">
+</ea-elements-loader>
+<ea-local-nav-shelf-sub-nav-section
+    title-text="EA Play"
+    slot="sub-nav-section"
+    unresolved
+>
+    
+<ea-elements-loader elements="ea-local-nav-shelf-sub-nav-section-link">
+</ea-elements-loader>
+<ea-local-nav-shelf-sub-nav-section-link
+    slot="sub-nav-section-link"
+    link-text="EA Play Pro Edition"
+    link-href="/en-au/games/fifa/fifa-22/buy/ea-play-pro-edition "
+    link-target="_self"
+    
+    unresolved
+>
+    <a href="/en-au/games/fifa/fifa-22/buy/ea-play-pro-edition ">EA Play Pro Edition</a>
+</ea-local-nav-shelf-sub-nav-section-link>
+
+<ea-elements-loader elements="ea-local-nav-shelf-sub-nav-section-link">
+</ea-elements-loader>
+<ea-local-nav-shelf-sub-nav-section-link
+    slot="sub-nav-section-link"
+    link-text="Member Rewards"
+    link-href="/en-au/games/fifa/fifa-22/ea-play-subscriber-rewards"
+    link-target="_self"
+    
+    unresolved
+>
+    <a href="/en-au/games/fifa/fifa-22/ea-play-subscriber-rewards">Member Rewards</a>
+</ea-local-nav-shelf-sub-nav-section-link>
+
+</ea-local-nav-shelf-sub-nav-section>
+
+</ea-local-nav-shelf-sub-nav>
+
+        
+    
+        
+            
+<ea-elements-loader elements="ea-local-nav-shelf-sub-nav">
+</ea-elements-loader>
+<ea-local-nav-shelf-sub-nav
+    slot="local-nav-shelf-link"
+    toggle-text="GAME MODES"
+    theme="dark"
+    type="narrow"
+    unresolved
+>
+    
+<ea-elements-loader elements="ea-local-nav-shelf-sub-nav-section">
+</ea-elements-loader>
+<ea-local-nav-shelf-sub-nav-section
+    title-text="FUT"
+    slot="sub-nav-section"
+    unresolved
+>
+    
+<ea-elements-loader elements="ea-local-nav-shelf-sub-nav-section-link">
+</ea-elements-loader>
+<ea-local-nav-shelf-sub-nav-section-link
+    slot="sub-nav-section-link"
+    link-text="TOTS"
+    link-href="/en-au/games/fifa/fifa-22/ultimate-team/tots"
+    link-target="_self"
+    
+    unresolved
+>
+    <a href="/en-au/games/fifa/fifa-22/ultimate-team/tots">TOTS</a>
+</ea-local-nav-shelf-sub-nav-section-link>
+
+<ea-elements-loader elements="ea-local-nav-shelf-sub-nav-section-link">
+</ea-elements-loader>
+<ea-local-nav-shelf-sub-nav-section-link
+    slot="sub-nav-section-link"
+    link-text="TOTY"
+    link-href="/en-au/games/fifa/fifa-22/ultimate-team/toty"
+    link-target="_self"
+    
+    unresolved
+>
+    <a href="/en-au/games/fifa/fifa-22/ultimate-team/toty">TOTY</a>
+</ea-local-nav-shelf-sub-nav-section-link>
+
+<ea-elements-loader elements="ea-local-nav-shelf-sub-nav-section-link">
+</ea-elements-loader>
+<ea-local-nav-shelf-sub-nav-section-link
+    slot="sub-nav-section-link"
+    link-text="Features"
+    link-href="/en-us/games/fifa/fifa-22/ultimate-team"
+    link-target="_self"
+    
+    unresolved
+>
+    <a href="/en-us/games/fifa/fifa-22/ultimate-team">Features</a>
+</ea-local-nav-shelf-sub-nav-section-link>
+
+<ea-elements-loader elements="ea-local-nav-shelf-sub-nav-section-link">
+</ea-elements-loader>
+<ea-local-nav-shelf-sub-nav-section-link
+    slot="sub-nav-section-link"
+    link-text="FUT Heroes"
+    link-href="/en-us/games/fifa/fifa-22/ultimate-team/fut-heroes"
+    link-target="_self"
+    
+    unresolved
+>
+    <a href="/en-us/games/fifa/fifa-22/ultimate-team/fut-heroes">FUT Heroes</a>
+</ea-local-nav-shelf-sub-nav-section-link>
+
+<ea-elements-loader elements="ea-local-nav-shelf-sub-nav-section-link">
+</ea-elements-loader>
+<ea-local-nav-shelf-sub-nav-section-link
+    slot="sub-nav-section-link"
+    link-text="Ones to Watch"
+    link-href="/en-us/games/fifa/fifa-22/ultimate-team/ones-to-watch"
+    link-target="_self"
+    
+    unresolved
+>
+    <a href="/en-us/games/fifa/fifa-22/ultimate-team/ones-to-watch">Ones to Watch</a>
+</ea-local-nav-shelf-sub-nav-section-link>
+
+<ea-elements-loader elements="ea-local-nav-shelf-sub-nav-section-link">
+</ea-elements-loader>
+<ea-local-nav-shelf-sub-nav-section-link
+    slot="sub-nav-section-link"
+    link-text="ICONs"
+    link-href="/en-au/games/fifa/fifa-22/ultimate-team/icons"
+    link-target="_self"
+    
+    unresolved
+>
+    <a href="/en-au/games/fifa/fifa-22/ultimate-team/icons">ICONs</a>
+</ea-local-nav-shelf-sub-nav-section-link>
+
+<ea-elements-loader elements="ea-local-nav-shelf-sub-nav-section-link">
+</ea-elements-loader>
+<ea-local-nav-shelf-sub-nav-section-link
+    slot="sub-nav-section-link"
+    link-text="Ratings"
+    link-href="/en-au/games/fifa/fifa-22/ratings"
+    link-target="_self"
+    
+    unresolved
+>
+    <a href="/en-au/games/fifa/fifa-22/ratings">Ratings</a>
+</ea-local-nav-shelf-sub-nav-section-link>
+
+<ea-elements-loader elements="ea-local-nav-shelf-sub-nav-section-link">
+</ea-elements-loader>
+<ea-local-nav-shelf-sub-nav-section-link
+    slot="sub-nav-section-link"
+    link-text="Ratings Collective"
+    link-href="https://fifa-ratingscollective.ea.com/"
+    link-target="_blank"
+    
+    unresolved
+>
+    <a href="https://fifa-ratingscollective.ea.com/">Ratings Collective</a>
+</ea-local-nav-shelf-sub-nav-section-link>
+
+<ea-elements-loader elements="ea-local-nav-shelf-sub-nav-section-link">
+</ea-elements-loader>
+<ea-local-nav-shelf-sub-nav-section-link
+    slot="sub-nav-section-link"
+    link-text="Item Guide"
+    link-href="/en-au/games/fifa/fifa-22/ultimate-team/item-guide"
+    link-target="_self"
+    
+    unresolved
+>
+    <a href="/en-au/games/fifa/fifa-22/ultimate-team/item-guide">Item Guide</a>
+</ea-local-nav-shelf-sub-nav-section-link>
+
+<ea-elements-loader elements="ea-local-nav-shelf-sub-nav-section-link">
+</ea-elements-loader>
+<ea-local-nav-shelf-sub-nav-section-link
+    slot="sub-nav-section-link"
+    link-text="FUT Web App"
+    link-href="/en-au/games/fifa/ultimate-team/fut-app"
+    link-target="_self"
+    
+    unresolved
+>
+    <a href="/en-au/games/fifa/ultimate-team/fut-app">FUT Web App</a>
+</ea-local-nav-shelf-sub-nav-section-link>
+
+</ea-local-nav-shelf-sub-nav-section>
+
+<ea-elements-loader elements="ea-local-nav-shelf-sub-nav-section">
+</ea-elements-loader>
+<ea-local-nav-shelf-sub-nav-section
+    title-text="VOLTA"
+    slot="sub-nav-section"
+    unresolved
+>
+    
+<ea-elements-loader elements="ea-local-nav-shelf-sub-nav-section-link">
+</ea-elements-loader>
+<ea-local-nav-shelf-sub-nav-section-link
+    slot="sub-nav-section-link"
+    link-text="Pitch Notes"
+    link-href="/en-au/games/fifa/fifa-22/news/pitch-notes-fifa-22-volta-football-deep-dive"
+    link-target="_self"
+    
+    unresolved
+>
+    <a href="/en-au/games/fifa/fifa-22/news/pitch-notes-fifa-22-volta-football-deep-dive">Pitch Notes</a>
+</ea-local-nav-shelf-sub-nav-section-link>
+
+</ea-local-nav-shelf-sub-nav-section>
+
+<ea-elements-loader elements="ea-local-nav-shelf-sub-nav-section">
+</ea-elements-loader>
+<ea-local-nav-shelf-sub-nav-section
+    title-text="CAREER MODE"
+    slot="sub-nav-section"
+    unresolved
+>
+    
+<ea-elements-loader elements="ea-local-nav-shelf-sub-nav-section-link">
+</ea-elements-loader>
+<ea-local-nav-shelf-sub-nav-section-link
+    slot="sub-nav-section-link"
+    link-text="Pitch Notes"
+    link-href="/en-us/games/fifa/fifa-22/news/pitch-notes-fifa-22-career-mode-deep-dive"
+    link-target="_self"
+    
+    unresolved
+>
+    <a href="/en-us/games/fifa/fifa-22/news/pitch-notes-fifa-22-career-mode-deep-dive">Pitch Notes</a>
+</ea-local-nav-shelf-sub-nav-section-link>
+
+</ea-local-nav-shelf-sub-nav-section>
+
+<ea-elements-loader elements="ea-local-nav-shelf-sub-nav-section">
+</ea-elements-loader>
+<ea-local-nav-shelf-sub-nav-section
+    title-text="PRO CLUBS"
+    slot="sub-nav-section"
+    unresolved
+>
+    
+<ea-elements-loader elements="ea-local-nav-shelf-sub-nav-section-link">
+</ea-elements-loader>
+<ea-local-nav-shelf-sub-nav-section-link
+    slot="sub-nav-section-link"
+    link-text="Rankings"
+    link-href="/en-au/games/fifa/pro-clubs"
+    link-target="_self"
+    
+    unresolved
+>
+    <a href="/en-au/games/fifa/pro-clubs">Rankings</a>
+</ea-local-nav-shelf-sub-nav-section-link>
+
+<ea-elements-loader elements="ea-local-nav-shelf-sub-nav-section-link">
+</ea-elements-loader>
+<ea-local-nav-shelf-sub-nav-section-link
+    slot="sub-nav-section-link"
+    link-text="Pitch Notes"
+    link-href="/en-us/games/fifa/fifa-22/news/pitch-notes-fifa-22-pro-clubs-deep-dive"
+    link-target="_self"
+    
+    unresolved
+>
+    <a href="/en-us/games/fifa/fifa-22/news/pitch-notes-fifa-22-pro-clubs-deep-dive">Pitch Notes</a>
+</ea-local-nav-shelf-sub-nav-section-link>
+
+</ea-local-nav-shelf-sub-nav-section>
+
+</ea-local-nav-shelf-sub-nav>
+
+        
+    
+        
+            
+<ea-elements-loader elements="ea-local-nav-shelf-sub-nav">
+</ea-elements-loader>
+<ea-local-nav-shelf-sub-nav
+    slot="local-nav-shelf-link"
+    toggle-text="COMMUNITY"
+    theme="dark"
+    type="simple"
+    unresolved
+>
+    
+<ea-elements-loader elements="ea-local-nav-shelf-sub-nav-section">
+</ea-elements-loader>
+<ea-local-nav-shelf-sub-nav-section
+    title-text=""
+    slot="sub-nav-section"
+    unresolved
+>
+    
+<ea-elements-loader elements="ea-local-nav-shelf-sub-nav-section-link">
+</ea-elements-loader>
+<ea-local-nav-shelf-sub-nav-section-link
+    slot="sub-nav-section-link"
+    link-text="Goals Of The Week"
+    link-href="/en-au/games/fifa/fifa-22/creators-hub/goals-of-the-week "
+    link-target="_self"
+    
+    unresolved
+>
+    <a href="/en-au/games/fifa/fifa-22/creators-hub/goals-of-the-week ">Goals Of The Week</a>
+</ea-local-nav-shelf-sub-nav-section-link>
+
+<ea-elements-loader elements="ea-local-nav-shelf-sub-nav-section-link">
+</ea-elements-loader>
+<ea-local-nav-shelf-sub-nav-section-link
+    slot="sub-nav-section-link"
+    link-text="Forums"
+    link-href="https://fifaforums.easports.com/en/categories/fifa-22"
+    link-target="_blank"
+    
+    unresolved
+>
+    <a href="https://fifaforums.easports.com/en/categories/fifa-22">Forums</a>
+</ea-local-nav-shelf-sub-nav-section-link>
+
+<ea-elements-loader elements="ea-local-nav-shelf-sub-nav-section-link">
+</ea-elements-loader>
+<ea-local-nav-shelf-sub-nav-section-link
+    slot="sub-nav-section-link"
+    link-text="Positive Player Charter"
+    link-href="/en-us/commitments/positive-play"
+    link-target="_self"
+    
+    unresolved
+>
+    <a href="/en-us/commitments/positive-play">Positive Player Charter</a>
+</ea-local-nav-shelf-sub-nav-section-link>
+
+</ea-local-nav-shelf-sub-nav-section>
+
+</ea-local-nav-shelf-sub-nav>
+
+        
+    
+        
+            
+<ea-elements-loader elements="ea-local-nav-shelf-sub-nav">
+</ea-elements-loader>
+<ea-local-nav-shelf-sub-nav
+    slot="local-nav-shelf-link"
+    toggle-text="NEWS &amp; MEDIA"
+    theme="dark"
+    type="simple"
+    unresolved
+>
+    
+<ea-elements-loader elements="ea-local-nav-shelf-sub-nav-section">
+</ea-elements-loader>
+<ea-local-nav-shelf-sub-nav-section
+    title-text=""
+    slot="sub-nav-section"
+    unresolved
+>
+    
+<ea-elements-loader elements="ea-local-nav-shelf-sub-nav-section-link">
+</ea-elements-loader>
+<ea-local-nav-shelf-sub-nav-section-link
+    slot="sub-nav-section-link"
+    link-text="FIFA 22 News"
+    link-href="/en-us/games/fifa/fifa-22/news"
+    link-target="_self"
+    
+    unresolved
+>
+    <a href="/en-us/games/fifa/fifa-22/news">FIFA 22 News</a>
+</ea-local-nav-shelf-sub-nav-section-link>
+
+<ea-elements-loader elements="ea-local-nav-shelf-sub-nav-section-link">
+</ea-elements-loader>
+<ea-local-nav-shelf-sub-nav-section-link
+    slot="sub-nav-section-link"
+    link-text="Pitch Notes"
+    link-href="/en-us/games/fifa/pitch-notes"
+    link-target="_self"
+    
+    unresolved
+>
+    <a href="/en-us/games/fifa/pitch-notes">Pitch Notes</a>
+</ea-local-nav-shelf-sub-nav-section-link>
+
+<ea-elements-loader elements="ea-local-nav-shelf-sub-nav-section-link">
+</ea-elements-loader>
+<ea-local-nav-shelf-sub-nav-section-link
+    slot="sub-nav-section-link"
+    link-text="Email Updates"
+    link-href="/en-us/games/fifa/fifa-22/newsletter"
+    link-target="_self"
+    
+    unresolved
+>
+    <a href="/en-us/games/fifa/fifa-22/newsletter">Email Updates</a>
+</ea-local-nav-shelf-sub-nav-section-link>
+
+</ea-local-nav-shelf-sub-nav-section>
+
+</ea-local-nav-shelf-sub-nav>
+
+        
+    
+        
+            
+                <ea-link
+                    slot="local-nav-shelf-link"
+                    class="eapl-local-nav__shelf-link"
+                    text-color="light"
+                    link-href="/en-au/games/fifa/compete/fgs-22"
+                    link-title="Compete"
+                    link-text="Compete"
+                    unresolved
+                >
+                    <a href="/en-au/games/fifa/compete/fgs-22">Compete</a>
+                </ea-link>
+            
+        
+    
+
+    
+        
+            
+
+    <ea-elements-loader elements="ea-local-nav-drawer-sub-nav-advanced">
+    </ea-elements-loader>
+    <ea-local-nav-drawer-sub-nav-advanced
+        
+            slot="local-nav-drawer-link"
+        
+        toggle-text="ABOUT"
+        toggle-tooltip=""
+        theme="dark"
+        
+            type="narrow"
+        
+        unresolved
+    >
+        
+        
+            
+
+    <ea-elements-loader elements="ea-local-nav-drawer-sub-nav-section, ea-link">
+    </ea-elements-loader>
+    <ea-local-nav-drawer-sub-nav-section
+        slot="local-nav-drawer-sub-nav-section"
+        title-text="About FIFA 22"
+        unresolved
+    >
+    
+        <ea-link
+            slot="local-nav-drawer-sub-nav-section-link"
+            link-href="/en-us/games/fifa/fifa-22/fifa-22-cover-athlete-and-ambassadors"
+            link-title=""
+            link-text="Ambassadors"
+            unresolved
+        >
+            <a href="/en-us/games/fifa/fifa-22/fifa-22-cover-athlete-and-ambassadors">Ambassadors</a>
+        </ea-link>
+    
+        <ea-link
+            slot="local-nav-drawer-sub-nav-section-link"
+            link-href="https://fifa22-club-packs.ea.com/"
+            link-title=""
+            link-text="Club Packs"
+            unresolved
+        >
+            <a href="https://fifa22-club-packs.ea.com/">Club Packs</a>
+        </ea-link>
+    
+        <ea-link
+            slot="local-nav-drawer-sub-nav-section-link"
+            link-href="/en-au/games/fifa/fifa-22/leagues-and-clubs-authenticity"
+            link-title=""
+            link-text="Unrivalled Authenticity"
+            unresolved
+        >
+            <a href="/en-au/games/fifa/fifa-22/leagues-and-clubs-authenticity">Unrivalled Authenticity</a>
+        </ea-link>
+    
+        <ea-link
+            slot="local-nav-drawer-sub-nav-section-link"
+            link-href="/en-au/games/fifa/fifa-22/soundtrack"
+            link-title=""
+            link-text="Soundtrack"
+            unresolved
+        >
+            <a href="/en-au/games/fifa/fifa-22/soundtrack">Soundtrack</a>
+        </ea-link>
+    
+        <ea-link
+            slot="local-nav-drawer-sub-nav-section-link"
+            link-href="/en-au/games/fifa/fifa-22/pc-system-requirements"
+            link-title=""
+            link-text="PC System Requirements"
+            unresolved
+        >
+            <a href="/en-au/games/fifa/fifa-22/pc-system-requirements">PC System Requirements</a>
+        </ea-link>
+    
+    </ea-local-nav-drawer-sub-nav-section>
+
+
+        
+            
+
+    <ea-elements-loader elements="ea-local-nav-drawer-sub-nav-section, ea-link">
+    </ea-elements-loader>
+    <ea-local-nav-drawer-sub-nav-section
+        slot="local-nav-drawer-sub-nav-section"
+        title-text="Features"
+        unresolved
+    >
+    
+        <ea-link
+            slot="local-nav-drawer-sub-nav-section-link"
+            link-href="/en-us/games/fifa/fifa-22/new-features-and-modes"
+            link-title=""
+            link-text="Features Overview"
+            unresolved
+        >
+            <a href="/en-us/games/fifa/fifa-22/new-features-and-modes">Features Overview</a>
+        </ea-link>
+    
+        <ea-link
+            slot="local-nav-drawer-sub-nav-section-link"
+            link-href="/en-us/games/fifa/fifa-22/new-features-and-modes/gameplay-features"
+            link-title=""
+            link-text="Gameplay Features"
+            unresolved
+        >
+            <a href="/en-us/games/fifa/fifa-22/new-features-and-modes/gameplay-features">Gameplay Features</a>
+        </ea-link>
+    
+        <ea-link
+            slot="local-nav-drawer-sub-nav-section-link"
+            link-href="/en-us/games/fifa/fifa-22/hypermotion"
+            link-title=""
+            link-text="HyperMotion"
+            unresolved
+        >
+            <a href="/en-us/games/fifa/fifa-22/hypermotion">HyperMotion</a>
+        </ea-link>
+    
+    </ea-local-nav-drawer-sub-nav-section>
+
+
+        
+            
+
+    <ea-elements-loader elements="ea-local-nav-drawer-sub-nav-section, ea-link">
+    </ea-elements-loader>
+    <ea-local-nav-drawer-sub-nav-section
+        slot="local-nav-drawer-sub-nav-section"
+        title-text="EA Play"
+        unresolved
+    >
+    
+        <ea-link
+            slot="local-nav-drawer-sub-nav-section-link"
+            link-href="/en-au/games/fifa/fifa-22/buy/ea-play-pro-edition "
+            link-title=""
+            link-text="EA Play Pro Edition"
+            unresolved
+        >
+            <a href="/en-au/games/fifa/fifa-22/buy/ea-play-pro-edition ">EA Play Pro Edition</a>
+        </ea-link>
+    
+        <ea-link
+            slot="local-nav-drawer-sub-nav-section-link"
+            link-href="/en-au/games/fifa/fifa-22/ea-play-subscriber-rewards"
+            link-title=""
+            link-text="Member Rewards"
+            unresolved
+        >
+            <a href="/en-au/games/fifa/fifa-22/ea-play-subscriber-rewards">Member Rewards</a>
+        </ea-link>
+    
+    </ea-local-nav-drawer-sub-nav-section>
+
+
+        
+    </ea-local-nav-drawer-sub-nav-advanced>
+
+
+        
+            
+
+    <ea-elements-loader elements="ea-local-nav-drawer-sub-nav-advanced">
+    </ea-elements-loader>
+    <ea-local-nav-drawer-sub-nav-advanced
+        
+            slot="local-nav-drawer-link"
+        
+        toggle-text="GAME MODES"
+        toggle-tooltip=""
+        theme="dark"
+        
+            type="narrow"
+        
+        unresolved
+    >
+        
+        
+            
+
+    <ea-elements-loader elements="ea-local-nav-drawer-sub-nav-section, ea-link">
+    </ea-elements-loader>
+    <ea-local-nav-drawer-sub-nav-section
+        slot="local-nav-drawer-sub-nav-section"
+        title-text="FUT"
+        unresolved
+    >
+    
+        <ea-link
+            slot="local-nav-drawer-sub-nav-section-link"
+            link-href="/en-au/games/fifa/fifa-22/ultimate-team/tots"
+            link-title=""
+            link-text="TOTS"
+            unresolved
+        >
+            <a href="/en-au/games/fifa/fifa-22/ultimate-team/tots">TOTS</a>
+        </ea-link>
+    
+        <ea-link
+            slot="local-nav-drawer-sub-nav-section-link"
+            link-href="/en-au/games/fifa/fifa-22/ultimate-team/toty"
+            link-title=""
+            link-text="TOTY"
+            unresolved
+        >
+            <a href="/en-au/games/fifa/fifa-22/ultimate-team/toty">TOTY</a>
+        </ea-link>
+    
+        <ea-link
+            slot="local-nav-drawer-sub-nav-section-link"
+            link-href="/en-us/games/fifa/fifa-22/ultimate-team"
+            link-title=""
+            link-text="Features"
+            unresolved
+        >
+            <a href="/en-us/games/fifa/fifa-22/ultimate-team">Features</a>
+        </ea-link>
+    
+        <ea-link
+            slot="local-nav-drawer-sub-nav-section-link"
+            link-href="/en-us/games/fifa/fifa-22/ultimate-team/fut-heroes"
+            link-title=""
+            link-text="FUT Heroes"
+            unresolved
+        >
+            <a href="/en-us/games/fifa/fifa-22/ultimate-team/fut-heroes">FUT Heroes</a>
+        </ea-link>
+    
+        <ea-link
+            slot="local-nav-drawer-sub-nav-section-link"
+            link-href="/en-us/games/fifa/fifa-22/ultimate-team/ones-to-watch"
+            link-title=""
+            link-text="Ones to Watch"
+            unresolved
+        >
+            <a href="/en-us/games/fifa/fifa-22/ultimate-team/ones-to-watch">Ones to Watch</a>
+        </ea-link>
+    
+        <ea-link
+            slot="local-nav-drawer-sub-nav-section-link"
+            link-href="/en-au/games/fifa/fifa-22/ultimate-team/icons"
+            link-title=""
+            link-text="ICONs"
+            unresolved
+        >
+            <a href="/en-au/games/fifa/fifa-22/ultimate-team/icons">ICONs</a>
+        </ea-link>
+    
+        <ea-link
+            slot="local-nav-drawer-sub-nav-section-link"
+            link-href="/en-au/games/fifa/fifa-22/ratings"
+            link-title=""
+            link-text="Ratings"
+            unresolved
+        >
+            <a href="/en-au/games/fifa/fifa-22/ratings">Ratings</a>
+        </ea-link>
+    
+        <ea-link
+            slot="local-nav-drawer-sub-nav-section-link"
+            link-href="https://fifa-ratingscollective.ea.com/"
+            link-title=""
+            link-text="Ratings Collective"
+            unresolved
+        >
+            <a href="https://fifa-ratingscollective.ea.com/">Ratings Collective</a>
+        </ea-link>
+    
+        <ea-link
+            slot="local-nav-drawer-sub-nav-section-link"
+            link-href="/en-au/games/fifa/fifa-22/ultimate-team/item-guide"
+            link-title=""
+            link-text="Item Guide"
+            unresolved
+        >
+            <a href="/en-au/games/fifa/fifa-22/ultimate-team/item-guide">Item Guide</a>
+        </ea-link>
+    
+        <ea-link
+            slot="local-nav-drawer-sub-nav-section-link"
+            link-href="/en-au/games/fifa/ultimate-team/fut-app"
+            link-title=""
+            link-text="FUT Web App"
+            unresolved
+        >
+            <a href="/en-au/games/fifa/ultimate-team/fut-app">FUT Web App</a>
+        </ea-link>
+    
+    </ea-local-nav-drawer-sub-nav-section>
+
+
+        
+            
+
+    <ea-elements-loader elements="ea-local-nav-drawer-sub-nav-section, ea-link">
+    </ea-elements-loader>
+    <ea-local-nav-drawer-sub-nav-section
+        slot="local-nav-drawer-sub-nav-section"
+        title-text="VOLTA"
+        unresolved
+    >
+    
+        <ea-link
+            slot="local-nav-drawer-sub-nav-section-link"
+            link-href="/en-au/games/fifa/fifa-22/news/pitch-notes-fifa-22-volta-football-deep-dive"
+            link-title=""
+            link-text="Pitch Notes"
+            unresolved
+        >
+            <a href="/en-au/games/fifa/fifa-22/news/pitch-notes-fifa-22-volta-football-deep-dive">Pitch Notes</a>
+        </ea-link>
+    
+    </ea-local-nav-drawer-sub-nav-section>
+
+
+        
+            
+
+    <ea-elements-loader elements="ea-local-nav-drawer-sub-nav-section, ea-link">
+    </ea-elements-loader>
+    <ea-local-nav-drawer-sub-nav-section
+        slot="local-nav-drawer-sub-nav-section"
+        title-text="CAREER MODE"
+        unresolved
+    >
+    
+        <ea-link
+            slot="local-nav-drawer-sub-nav-section-link"
+            link-href="/en-us/games/fifa/fifa-22/news/pitch-notes-fifa-22-career-mode-deep-dive"
+            link-title=""
+            link-text="Pitch Notes"
+            unresolved
+        >
+            <a href="/en-us/games/fifa/fifa-22/news/pitch-notes-fifa-22-career-mode-deep-dive">Pitch Notes</a>
+        </ea-link>
+    
+    </ea-local-nav-drawer-sub-nav-section>
+
+
+        
+            
+
+    <ea-elements-loader elements="ea-local-nav-drawer-sub-nav-section, ea-link">
+    </ea-elements-loader>
+    <ea-local-nav-drawer-sub-nav-section
+        slot="local-nav-drawer-sub-nav-section"
+        title-text="PRO CLUBS"
+        unresolved
+    >
+    
+        <ea-link
+            slot="local-nav-drawer-sub-nav-section-link"
+            link-href="/en-au/games/fifa/pro-clubs"
+            link-title=""
+            link-text="Rankings"
+            unresolved
+        >
+            <a href="/en-au/games/fifa/pro-clubs">Rankings</a>
+        </ea-link>
+    
+        <ea-link
+            slot="local-nav-drawer-sub-nav-section-link"
+            link-href="/en-us/games/fifa/fifa-22/news/pitch-notes-fifa-22-pro-clubs-deep-dive"
+            link-title=""
+            link-text="Pitch Notes"
+            unresolved
+        >
+            <a href="/en-us/games/fifa/fifa-22/news/pitch-notes-fifa-22-pro-clubs-deep-dive">Pitch Notes</a>
+        </ea-link>
+    
+    </ea-local-nav-drawer-sub-nav-section>
+
+
+        
+    </ea-local-nav-drawer-sub-nav-advanced>
+
+
+        
+            
+
+    <ea-elements-loader elements="ea-local-nav-drawer-sub-nav-advanced">
+    </ea-elements-loader>
+    <ea-local-nav-drawer-sub-nav-advanced
+        
+            slot="local-nav-drawer-link"
+        
+        toggle-text="COMMUNITY"
+        toggle-tooltip=""
+        theme="dark"
+        
+            type="simple"
+        
+        unresolved
+    >
+        
+        
+            
+
+    <ea-elements-loader elements="ea-link">
+    </ea-elements-loader>
+    <ea-link
+        slot="local-nav-drawer-sub-link"
+        class="eapl-local-nav__drawer-sub-link"
+        link-href="/en-au/games/fifa/fifa-22/creators-hub/goals-of-the-week "
+        link-title=""
+        link-text="Goals Of The Week"
+        text-color=""
+        unresolved
+    >
+        <a href="/en-au/games/fifa/fifa-22/creators-hub/goals-of-the-week ">Goals Of The Week</a>
+    </ea-link>
+
+
+        
+            
+
+    <ea-elements-loader elements="ea-link">
+    </ea-elements-loader>
+    <ea-link
+        slot="local-nav-drawer-sub-link"
+        class="eapl-local-nav__drawer-sub-link"
+        link-href="https://fifaforums.easports.com/en/categories/fifa-22"
+        link-title=""
+        link-text="Forums"
+        text-color=""
+        unresolved
+    >
+        <a href="https://fifaforums.easports.com/en/categories/fifa-22">Forums</a>
+    </ea-link>
+
+
+        
+            
+
+    <ea-elements-loader elements="ea-link">
+    </ea-elements-loader>
+    <ea-link
+        slot="local-nav-drawer-sub-link"
+        class="eapl-local-nav__drawer-sub-link"
+        link-href="/en-us/commitments/positive-play"
+        link-title=""
+        link-text="Positive Player Charter"
+        text-color=""
+        unresolved
+    >
+        <a href="/en-us/commitments/positive-play">Positive Player Charter</a>
+    </ea-link>
+
+
+        
+    </ea-local-nav-drawer-sub-nav-advanced>
+
+
+        
+            
+
+    <ea-elements-loader elements="ea-local-nav-drawer-sub-nav-advanced">
+    </ea-elements-loader>
+    <ea-local-nav-drawer-sub-nav-advanced
+        
+            slot="local-nav-drawer-link"
+        
+        toggle-text="NEWS &amp; MEDIA"
+        toggle-tooltip=""
+        theme="dark"
+        
+            type="simple"
+        
+        unresolved
+    >
+        
+        
+            
+
+    <ea-elements-loader elements="ea-link">
+    </ea-elements-loader>
+    <ea-link
+        slot="local-nav-drawer-sub-link"
+        class="eapl-local-nav__drawer-sub-link"
+        link-href="/en-us/games/fifa/fifa-22/news"
+        link-title=""
+        link-text="FIFA 22 News"
+        text-color=""
+        unresolved
+    >
+        <a href="/en-us/games/fifa/fifa-22/news">FIFA 22 News</a>
+    </ea-link>
+
+
+        
+            
+
+    <ea-elements-loader elements="ea-link">
+    </ea-elements-loader>
+    <ea-link
+        slot="local-nav-drawer-sub-link"
+        class="eapl-local-nav__drawer-sub-link"
+        link-href="/en-us/games/fifa/pitch-notes"
+        link-title=""
+        link-text="Pitch Notes"
+        text-color=""
+        unresolved
+    >
+        <a href="/en-us/games/fifa/pitch-notes">Pitch Notes</a>
+    </ea-link>
+
+
+        
+            
+
+    <ea-elements-loader elements="ea-link">
+    </ea-elements-loader>
+    <ea-link
+        slot="local-nav-drawer-sub-link"
+        class="eapl-local-nav__drawer-sub-link"
+        link-href="/en-us/games/fifa/fifa-22/newsletter"
+        link-title=""
+        link-text="Email Updates"
+        text-color=""
+        unresolved
+    >
+        <a href="/en-us/games/fifa/fifa-22/newsletter">Email Updates</a>
+    </ea-link>
+
+
+        
+    </ea-local-nav-drawer-sub-nav-advanced>
+
+
+        
+            
+
+    <ea-elements-loader elements="ea-link">
+    </ea-elements-loader>
+    <ea-link
+        
+            slot="local-nav-drawer-link"
+        
+        class="eapl-local-nav__drawer-link"
+        link-href="/en-au/games/fifa/compete/fgs-22"
+        link-title="Compete"
+        link-text="Compete"
+        text-color="light"
+        unresolved
+    >
+        <a href="/en-au/games/fifa/compete/fgs-22">Compete</a>
+    </ea-link>
+
+
+        
+    
+
+    
+        
+
+
+    <ea-elements-loader elements="ea-cta-dropdown, ea-hybrid-modal-invoker">
+    </ea-elements-loader>
+
+    
+        <ea-cta-dropdown
+            slot="cta-dropdown"
+            theme="dark"
+            cta-title-text="Buy FIFA 22 Now"
+            cta-link=" "
+            border-color="none"
+            fill-color="brand"
+            text-color="dark"
+
+            
+            
+            
+            unresolved
+        >
+            
+                <ea-container>
+                
+<ea-elements-loader elements="ea-cta">
+</ea-elements-loader>
+<ea-cta
+    
+        slot="cta"
+    
+    
+        type="standard"
+    
+    
+        link-url="/en-au/games/fifa/fifa-22/buy/playstation"
+    
+    
+    
+        link-text="PlayStation®"
+    
+    
+        icon="none"
+    
+    
+    
+        fill-color="none"
+    
+    
+        text-color="dark"
+    
+    
+        stroke-color="dark"
+    
+    
+        target="_self"
+    
+    
+    
+    
+    
+        intent="buy"
+    
+    
+    
+    
+        emphasis="primary"
+    
+    
+    
+    
+    
+    unresolved
+>
+    <a
+        
+            href="/en-au/games/fifa/fifa-22/buy/playstation"
+        
+        
+    >
+        
+            PlayStation®
+        
+    </a>
+</ea-cta>
+
+                </ea-container>
+            
+                <ea-container>
+                
+<ea-elements-loader elements="ea-cta">
+</ea-elements-loader>
+<ea-cta
+    
+        slot="cta"
+    
+    
+        type="standard"
+    
+    
+        link-url="/en-au/games/fifa/fifa-22/buy/xbox"
+    
+    
+    
+        link-text="Xbox"
+    
+    
+        icon="none"
+    
+    
+    
+        fill-color="none"
+    
+    
+        text-color="dark"
+    
+    
+        stroke-color="dark"
+    
+    
+        target="_self"
+    
+    
+    
+    
+    
+        intent="buy"
+    
+    
+    
+    
+        emphasis="primary"
+    
+    
+    
+    
+    
+    unresolved
+>
+    <a
+        
+            href="/en-au/games/fifa/fifa-22/buy/xbox"
+        
+        
+    >
+        
+            Xbox
+        
+    </a>
+</ea-cta>
+
+                </ea-container>
+            
+                <ea-container>
+                
+<ea-elements-loader elements="ea-cta">
+</ea-elements-loader>
+<ea-cta
+    
+        slot="cta"
+    
+    
+        type="standard"
+    
+    
+        link-url="/en-au/games/fifa/fifa-22/buy/pc"
+    
+    
+    
+        link-text="The EA App for Windows"
+    
+    
+        icon="none"
+    
+    
+    
+        fill-color="none"
+    
+    
+        text-color="dark"
+    
+    
+        stroke-color="dark"
+    
+    
+        target="_self"
+    
+    
+    
+    
+    
+        intent="buy"
+    
+    
+    
+    
+        emphasis="primary"
+    
+    
+    
+    
+    
+    unresolved
+>
+    <a
+        
+            href="/en-au/games/fifa/fifa-22/buy/pc"
+        
+        
+    >
+        
+            The EA App for Windows
+        
+    </a>
+</ea-cta>
+
+                </ea-container>
+            
+                <ea-container>
+                
+<ea-elements-loader elements="ea-cta">
+</ea-elements-loader>
+<ea-cta
+    
+        slot="cta"
+    
+    
+        type="standard"
+    
+    
+        link-url="https://smarturl.it/fifa22-stadia-e-ue"
+    
+    
+    
+        link-text="Stadia"
+    
+    
+        icon="none"
+    
+    
+    
+        fill-color="none"
+    
+    
+        text-color="dark"
+    
+    
+        stroke-color="dark"
+    
+    
+        target="_blank"
+    
+    
+    
+    
+    
+        intent="buy"
+    
+    
+    
+    
+        emphasis="primary"
+    
+    
+    
+    
+    
+    unresolved
+>
+    <a
+        
+            href="https://smarturl.it/fifa22-stadia-e-ue"
+        
+        
+    >
+        
+            Stadia
+        
+    </a>
+</ea-cta>
+
+                </ea-container>
+            
+                <ea-container>
+                
+<ea-elements-loader elements="ea-cta">
+</ea-elements-loader>
+<ea-cta
+    
+        slot="cta"
+    
+    
+        type="standard"
+    
+    
+        link-url="https://store.steampowered.com/app/1506830?utm_medium=organic&amp;utm_source=franchise_web&amp;utm_content=buylink"
+    
+    
+    
+        link-text="Steam"
+    
+    
+        icon="none"
+    
+    
+    
+        fill-color="none"
+    
+    
+        text-color="dark"
+    
+    
+        stroke-color="dark"
+    
+    
+        target="_blank"
+    
+    
+    
+    
+    
+        intent="buy"
+    
+    
+    
+    
+        emphasis="primary"
+    
+    
+    
+    
+    
+    unresolved
+>
+    <a
+        
+            href="https://store.steampowered.com/app/1506830?utm_medium=organic&amp;utm_source=franchise_web&amp;utm_content=buylink"
+        
+        
+    >
+        
+            Steam
+        
+    </a>
+</ea-cta>
+
+                </ea-container>
+            
+
+            
+        </ea-cta-dropdown>
+    
+
+
+
+        
+            <ea-elements-loader elements="ea-local-nav-dropdown">
+            </ea-elements-loader>
+            <ea-local-nav-dropdown
+                slot="local-nav-dropdown"
+                theme="dark"
+                menu-title=""
+                cta-title-text="Buy FIFA 22 Now"
+                cta-link=" "
+                border-color="none"
+                fill-color="brand"
+                text-color="dark"
+                unresolved
+            >
+            
+                <ea-container>
+                    
+<ea-elements-loader elements="ea-cta">
+</ea-elements-loader>
+<ea-cta
+    
+        slot="cta"
+    
+    
+        type="standard"
+    
+    
+        link-url="/en-au/games/fifa/fifa-22/buy/playstation"
+    
+    
+    
+        link-text="PlayStation®"
+    
+    
+        icon="none"
+    
+    
+    
+        fill-color="none"
+    
+    
+        text-color="dark"
+    
+    
+        stroke-color="dark"
+    
+    
+        target="_self"
+    
+    
+    
+    
+    
+        intent="buy"
+    
+    
+    
+    
+        emphasis="primary"
+    
+    
+    
+    
+    
+    unresolved
+>
+    <a
+        
+            href="/en-au/games/fifa/fifa-22/buy/playstation"
+        
+        
+    >
+        
+            PlayStation®
+        
+    </a>
+</ea-cta>
+
+                </ea-container>
+            
+                <ea-container>
+                    
+<ea-elements-loader elements="ea-cta">
+</ea-elements-loader>
+<ea-cta
+    
+        slot="cta"
+    
+    
+        type="standard"
+    
+    
+        link-url="/en-au/games/fifa/fifa-22/buy/xbox"
+    
+    
+    
+        link-text="Xbox"
+    
+    
+        icon="none"
+    
+    
+    
+        fill-color="none"
+    
+    
+        text-color="dark"
+    
+    
+        stroke-color="dark"
+    
+    
+        target="_self"
+    
+    
+    
+    
+    
+        intent="buy"
+    
+    
+    
+    
+        emphasis="primary"
+    
+    
+    
+    
+    
+    unresolved
+>
+    <a
+        
+            href="/en-au/games/fifa/fifa-22/buy/xbox"
+        
+        
+    >
+        
+            Xbox
+        
+    </a>
+</ea-cta>
+
+                </ea-container>
+            
+                <ea-container>
+                    
+<ea-elements-loader elements="ea-cta">
+</ea-elements-loader>
+<ea-cta
+    
+        slot="cta"
+    
+    
+        type="standard"
+    
+    
+        link-url="/en-au/games/fifa/fifa-22/buy/pc"
+    
+    
+    
+        link-text="The EA App for Windows"
+    
+    
+        icon="none"
+    
+    
+    
+        fill-color="none"
+    
+    
+        text-color="dark"
+    
+    
+        stroke-color="dark"
+    
+    
+        target="_self"
+    
+    
+    
+    
+    
+        intent="buy"
+    
+    
+    
+    
+        emphasis="primary"
+    
+    
+    
+    
+    
+    unresolved
+>
+    <a
+        
+            href="/en-au/games/fifa/fifa-22/buy/pc"
+        
+        
+    >
+        
+            The EA App for Windows
+        
+    </a>
+</ea-cta>
+
+                </ea-container>
+            
+                <ea-container>
+                    
+<ea-elements-loader elements="ea-cta">
+</ea-elements-loader>
+<ea-cta
+    
+        slot="cta"
+    
+    
+        type="standard"
+    
+    
+        link-url="https://smarturl.it/fifa22-stadia-e-ue"
+    
+    
+    
+        link-text="Stadia"
+    
+    
+        icon="none"
+    
+    
+    
+        fill-color="none"
+    
+    
+        text-color="dark"
+    
+    
+        stroke-color="dark"
+    
+    
+        target="_blank"
+    
+    
+    
+    
+    
+        intent="buy"
+    
+    
+    
+    
+        emphasis="primary"
+    
+    
+    
+    
+    
+    unresolved
+>
+    <a
+        
+            href="https://smarturl.it/fifa22-stadia-e-ue"
+        
+        
+    >
+        
+            Stadia
+        
+    </a>
+</ea-cta>
+
+                </ea-container>
+            
+                <ea-container>
+                    
+<ea-elements-loader elements="ea-cta">
+</ea-elements-loader>
+<ea-cta
+    
+        slot="cta"
+    
+    
+        type="standard"
+    
+    
+        link-url="https://store.steampowered.com/app/1506830?utm_medium=organic&amp;utm_source=franchise_web&amp;utm_content=buylink"
+    
+    
+    
+        link-text="Steam"
+    
+    
+        icon="none"
+    
+    
+    
+        fill-color="none"
+    
+    
+        text-color="dark"
+    
+    
+        stroke-color="dark"
+    
+    
+        target="_blank"
+    
+    
+    
+    
+    
+        intent="buy"
+    
+    
+    
+    
+        emphasis="primary"
+    
+    
+    
+    
+    
+    unresolved
+>
+    <a
+        
+            href="https://store.steampowered.com/app/1506830?utm_medium=organic&amp;utm_source=franchise_web&amp;utm_content=buylink"
+        
+        
+    >
+        
+            Steam
+        
+    </a>
+</ea-cta>
+
+                </ea-container>
+            
+            
+            </ea-local-nav-dropdown>
+        
+    
+</ea-local-nav-advanced>
+
+
+
+            
+        
+    
+
+
+
+
+    
+        
+            
+                
+<ea-elements-loader elements="ea-spacer">
+</ea-elements-loader>
+<ea-spacer
+    unresolved
+    
+        smallest="var(--fifa-primary-spacer-XS)"
+    
+    
+        small="var(--fifa-primary-spacer-S)"
+    
+    
+        medium="var(--fifa-primary-spacer-M)"
+    
+    
+        large="var(--fifa-primary-spacer-L)"
+    
+    
+        largest="var(--fifa-primary-spacer-XL)"
+    
+>
+</ea-spacer>
+
+            
+                
+
+
+    
+
+
+            
+        
+    
+
+
+<main>
+    
+
+
+<ea-elements-loader elements="ea-page-background">
+</ea-elements-loader>
+<ea-page-background
+    unresolved
+    layout="fixed"
+    background-color=""
+    
+>
+    
+
+
+    <ea-elements-loader elements="ea-image">
+    </ea-elements-loader>
+    <ea-image
+        unresolved
+        tooltip=""
+        smallest="https://media.contentapi.ea.com/content/dam/ea/fifa/fifa-21/global_assets/common/page-backgrounds/fifa21-page-bg-obsidian.png.adapt.320w.png"
+        small="https://media.contentapi.ea.com/content/dam/ea/fifa/fifa-21/global_assets/common/page-backgrounds/fifa21-page-bg-obsidian.png.adapt.768w.png"
+        medium="https://media.contentapi.ea.com/content/dam/ea/fifa/fifa-21/global_assets/common/page-backgrounds/fifa21-page-bg-obsidian.png.adapt.1024w.png"
+        large="https://media.contentapi.ea.com/content/dam/ea/fifa/fifa-21/global_assets/common/page-backgrounds/fifa21-page-bg-obsidian.png.adapt.1456w.png"
+        largest="https://media.contentapi.ea.com/content/dam/ea/fifa/fifa-21/global_assets/common/page-backgrounds/fifa21-page-bg-obsidian.png.adapt.1920w.png"
+        
+        
+        
+        
+            slot="image"
+        
+    >
+        <img
+            src="https://media.contentapi.ea.com/content/dam/ea/fifa/fifa-21/global_assets/common/page-backgrounds/fifa21-page-bg-obsidian.png.adapt.320w.png"
+            alt=""
+            srcset="https://media.contentapi.ea.com/content/dam/ea/fifa/fifa-21/global_assets/common/page-backgrounds/fifa21-page-bg-obsidian.png.adapt.320w.png 320w, https://media.contentapi.ea.com/content/dam/ea/fifa/fifa-21/global_assets/common/page-backgrounds/fifa21-page-bg-obsidian.png.adapt.768w.png 768w, https://media.contentapi.ea.com/content/dam/ea/fifa/fifa-21/global_assets/common/page-backgrounds/fifa21-page-bg-obsidian.png.adapt.1024w.png 1024w, https://media.contentapi.ea.com/content/dam/ea/fifa/fifa-21/global_assets/common/page-backgrounds/fifa21-page-bg-obsidian.png.adapt.1456w.png 1320w, https://media.contentapi.ea.com/content/dam/ea/fifa/fifa-21/global_assets/common/page-backgrounds/fifa21-page-bg-obsidian.png.adapt.1920w.png 1456w" />
+    </ea-image>
+
+
+
+</ea-page-background>
+
+<ea-elements-loader elements="ea-spacer">
+</ea-elements-loader>
+<ea-spacer
+    unresolved
+    
+        smallest="3rem"
+    
+    
+        small="3rem"
+    
+    
+        medium="3rem"
+    
+    
+        large="3rem"
+    
+    
+        largest="3rem"
+    
+>
+</ea-spacer>
+
+<ea-elements-loader elements="ea-header">
+</ea-elements-loader>
+<ea-header
+    
+
+    
+        layout="small"
+    
+
+    
+        eyebrow-text="FIFA 22 Ratings"
+    
+
+    
+        title-text="Best LaLiga Santander Players"
+    
+
+    
+
+    
+        background-color="brand"
+    
+
+    
+
+    
+
+    
+        text-color="light"
+    
+
+    
+    
+    
+        image-smallest="https://media.contentapi.ea.com/content/dam/ea/fifa/fifa-22/news/common/ratings-reveal/fifa-22-ratings-reveal-header-xl.jpg.adapt.320w.jpg"
+        image-small="https://media.contentapi.ea.com/content/dam/ea/fifa/fifa-22/news/common/ratings-reveal/fifa-22-ratings-reveal-header-xl.jpg.adapt.768w.jpg"
+        image-medium="https://media.contentapi.ea.com/content/dam/ea/fifa/fifa-22/news/common/ratings-reveal/fifa-22-ratings-reveal-header-xl.jpg.adapt.1024w.jpg"
+        image-large="https://media.contentapi.ea.com/content/dam/ea/fifa/fifa-22/news/common/ratings-reveal/fifa-22-ratings-reveal-header-xl.jpg.adapt.1456w.jpg"
+        image-largest="https://media.contentapi.ea.com/content/dam/ea/fifa/fifa-22/news/common/ratings-reveal/fifa-22-ratings-reveal-header-xl.jpg.adapt.1920w.jpg"
+        image-tooltip=""
+    
+    
+    
+    
+    unresolved
+>
+    
+        <h1>Best LaLiga Santander Players</h1>
+    
+    
+    
+        <h3>FIFA 22 Ratings</h3>
+    
+    
+        <img
+            src="https://media.contentapi.ea.com/content/dam/ea/fifa/fifa-22/news/common/ratings-reveal/fifa-22-ratings-reveal-header-xl.jpg.adapt.320w.jpg"
+            alt=""
+            srcset="https://media.contentapi.ea.com/content/dam/ea/fifa/fifa-22/news/common/ratings-reveal/fifa-22-ratings-reveal-header-xl.jpg.adapt.320w.jpg 320w, https://media.contentapi.ea.com/content/dam/ea/fifa/fifa-22/news/common/ratings-reveal/fifa-22-ratings-reveal-header-xl.jpg.adapt.768w.jpg 768w, https://media.contentapi.ea.com/content/dam/ea/fifa/fifa-22/news/common/ratings-reveal/fifa-22-ratings-reveal-header-xl.jpg.adapt.1024w.jpg 1024w, https://media.contentapi.ea.com/content/dam/ea/fifa/fifa-22/news/common/ratings-reveal/fifa-22-ratings-reveal-header-xl.jpg.adapt.1456w.jpg 1320w, https://media.contentapi.ea.com/content/dam/ea/fifa/fifa-22/news/common/ratings-reveal/fifa-22-ratings-reveal-header-xl.jpg.adapt.1920w.jpg 1456w"
+        />
+    
+    
+</ea-header>
+
+<ea-elements-loader elements="ea-section">
+</ea-elements-loader>
+<ea-section
+    unresolved
+    slot="section"
+    
+    
+        type="railed"
+    
+    
+        layout="100"
+    
+    
+    
+        background-color="none"
+    
+    
+    
+        background-overflow="hidden"
+    
+    
+        spacing-top="none"
+    
+    
+        spacing-bottom="none"
+    
+    
+    
+    
+    
+>
+    
+    
+
+
+<ea-section-column
+    slot="section-column"
+    
+        indent-left="1"
+    
+    
+        indent-right="1"
+    
+    
+        text-align="left"
+    
+    
+    
+>
+    
+<ea-elements-loader elements="ea-text">
+</ea-elements-loader>
+<ea-text
+    unresolved
+    slot="text"
+    
+        text-color="light"
+    
+>
+    <p>A new season is underway in Spain with new stars and some of the game’s best players ready to battle it out.</p>
+<p>Here are the best LaLiga Santander players in FIFA 22 and their ratings.</p>
+
+    
+</ea-text>
+
+<ea-elements-loader elements="ea-grid">
+</ea-elements-loader>
+<ea-grid
+    
+
+    type="ordered"
+
+
+    tile-media-shape="rectangle"
+
+
+
+    layout="2up"
+
+
+    tile-type="vertical"
+
+
+    tile-text-align="center"
+
+
+    tile-text-color="light"
+
+
+    tile-color="none"
+
+
+
+
+
+
+
+    hide-ctas
+
+
+    hide-brand-stroke
+
+
+
+    spacing-top="medium"
+
+
+    spacing-bottom="medium"
+
+
+
+
+    
+    
+        two-up-on-mobile
+    
+    
+        tile-scrim-color="none"
+    
+    
+        tile-scrim-opacity="medium"
+    
+    tile-align="center"
+    
+    
+    
+    
+    
+    
+    
+    animate-in-order=""
+    animate-out-order=""
+    
+    unresolved
+>
+    
+    
+<ea-elements-loader elements="ea-tile">
+</ea-elements-loader>
+<ea-container
+    slot="container"
+    
+        filter-key="All"
+    
+    >
+    <ea-tile
+        unresolved
+        slot="tile"
+        style="--ea-animation-index:0"
+        
+        
+        
+        
+            media="https://media.contentapi.ea.com/content/dam/ea/fifa/fifa-22/news/common/ratings-reveal/ratings-reveal-laliga-santander/david-alaba.png.adapt.crop16x9.652w.png"
+        
+        
+        
+        
+        
+            title-text="David Alaba - Real Madrid - CB - 84 OVR"
+        
+        
+        
+        
+        
+        
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+    >
+        
+            <h3>David Alaba - Real Madrid - CB - 84 OVR</h3>
+        
+        
+        
+        
+        <ea-tile-copy slot="copy">
+        
+        </ea-tile-copy>
+        
+        
+            
+        
+        
+    </ea-tile>
+</ea-container>
+
+<ea-elements-loader elements="ea-tile">
+</ea-elements-loader>
+<ea-container
+    slot="container"
+    
+        filter-key="All"
+    
+    >
+    <ea-tile
+        unresolved
+        slot="tile"
+        style="--ea-animation-index:1"
+        
+        
+        
+        
+            media="https://media.contentapi.ea.com/content/dam/ea/fifa/fifa-22/news/common/ratings-reveal/ratings-reveal-laliga-santander/carvajal.png.adapt.crop16x9.652w.png"
+        
+        
+        
+        
+        
+            title-text="Carvajal - Real Madrid - RB - 85 OVR"
+        
+        
+        
+        
+        
+        
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+    >
+        
+            <h3>Carvajal - Real Madrid - RB - 85 OVR</h3>
+        
+        
+        
+        
+        <ea-tile-copy slot="copy">
+        
+        </ea-tile-copy>
+        
+        
+            
+        
+        
+    </ea-tile>
+</ea-container>
+
+<ea-elements-loader elements="ea-tile">
+</ea-elements-loader>
+<ea-container
+    slot="container"
+    
+        filter-key="All"
+    
+    >
+    <ea-tile
+        unresolved
+        slot="tile"
+        style="--ea-animation-index:2"
+        
+        
+        
+        
+            media="https://media.contentapi.ea.com/content/dam/ea/fifa/fifa-22/news/common/ratings-reveal/ratings-reveal-laliga-santander/alenjandro-gomez.png.adapt.crop16x9.652w.png"
+        
+        
+        
+        
+        
+            title-text="Alejandro Gómez - Sevilla FC - CAM - 85 OVR"
+        
+        
+        
+        
+        
+        
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+    >
+        
+            <h3>Alejandro Gómez - Sevilla FC - CAM - 85 OVR</h3>
+        
+        
+        
+        
+        <ea-tile-copy slot="copy">
+        
+        </ea-tile-copy>
+        
+        
+            
+        
+        
+    </ea-tile>
+</ea-container>
+
+<ea-elements-loader elements="ea-tile">
+</ea-elements-loader>
+<ea-container
+    slot="container"
+    
+        filter-key="All"
+    
+    >
+    <ea-tile
+        unresolved
+        slot="tile"
+        style="--ea-animation-index:3"
+        
+        
+        
+        
+            media="https://media.contentapi.ea.com/content/dam/ea/fifa/fifa-22/news/common/ratings-reveal/ratings-reveal-laliga-santander/koke.png.adapt.crop16x9.652w.png"
+        
+        
+        
+        
+        
+            title-text="Koke - Atlético de Madrid - CM - 85 OVR"
+        
+        
+        
+        
+        
+        
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+    >
+        
+            <h3>Koke - Atlético de Madrid - CM - 85 OVR</h3>
+        
+        
+        
+        
+        <ea-tile-copy slot="copy">
+        
+        </ea-tile-copy>
+        
+        
+            
+        
+        
+    </ea-tile>
+</ea-container>
+
+<ea-elements-loader elements="ea-tile">
+</ea-elements-loader>
+<ea-container
+    slot="container"
+    
+        filter-key="All"
+    
+    >
+    <ea-tile
+        unresolved
+        slot="tile"
+        style="--ea-animation-index:4"
+        
+        
+        
+        
+            media="https://media.contentapi.ea.com/content/dam/ea/fifa/fifa-22/news/common/ratings-reveal/ratings-reveal-laliga-santander/oyarzabal.png.adapt.crop16x9.652w.png"
+        
+        
+        
+        
+        
+            title-text="Oyarzabal - Real Sociedad - LW - 85 OVR"
+        
+        
+        
+        
+        
+        
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+    >
+        
+            <h3>Oyarzabal - Real Sociedad - LW - 85 OVR</h3>
+        
+        
+        
+        
+        <ea-tile-copy slot="copy">
+        
+        </ea-tile-copy>
+        
+        
+            
+        
+        
+    </ea-tile>
+</ea-container>
+
+<ea-elements-loader elements="ea-tile">
+</ea-elements-loader>
+<ea-container
+    slot="container"
+    
+        filter-key="All"
+    
+    >
+    <ea-tile
+        unresolved
+        slot="tile"
+        style="--ea-animation-index:5"
+        
+        
+        
+        
+            media="https://media.contentapi.ea.com/content/dam/ea/fifa/fifa-22/news/common/ratings-reveal/ratings-reveal-laliga-santander/david-silva.png.adapt.crop16x9.652w.png"
+        
+        
+        
+        
+        
+            title-text="David Silva - Real Sociedad - CAM - 85 OVR"
+        
+        
+        
+        
+        
+        
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+    >
+        
+            <h3>David Silva - Real Sociedad - CAM - 85 OVR</h3>
+        
+        
+        
+        
+        <ea-tile-copy slot="copy">
+        
+        </ea-tile-copy>
+        
+        
+            
+        
+        
+    </ea-tile>
+</ea-container>
+
+<ea-elements-loader elements="ea-tile">
+</ea-elements-loader>
+<ea-container
+    slot="container"
+    
+        filter-key="All"
+    
+    >
+    <ea-tile
+        unresolved
+        slot="tile"
+        style="--ea-animation-index:6"
+        
+        
+        
+        
+            media="https://media.contentapi.ea.com/content/dam/ea/fifa/fifa-22/news/common/ratings-reveal/ratings-reveal-laliga-santander/eden-hazard.png.adapt.crop16x9.652w.png"
+        
+        
+        
+        
+        
+            title-text="Eden Hazard - Real Madrid - LW - 85 OVR"
+        
+        
+        
+        
+        
+        
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+    >
+        
+            <h3>Eden Hazard - Real Madrid - LW - 85 OVR</h3>
+        
+        
+        
+        
+        <ea-tile-copy slot="copy">
+        
+        </ea-tile-copy>
+        
+        
+            
+        
+        
+    </ea-tile>
+</ea-container>
+
+<ea-elements-loader elements="ea-tile">
+</ea-elements-loader>
+<ea-container
+    slot="container"
+    
+        filter-key="All"
+    
+    >
+    <ea-tile
+        unresolved
+        slot="tile"
+        style="--ea-animation-index:7"
+        
+        
+        
+        
+            media="https://media.contentapi.ea.com/content/dam/ea/fifa/fifa-22/news/common/ratings-reveal/ratings-reveal-laliga-santander/memphis-depay.png.adapt.crop16x9.652w.png"
+        
+        
+        
+        
+        
+            title-text="Memphis Depay - FC Barcelona - CF - 85 OVR"
+        
+        
+        
+        
+        
+        
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+    >
+        
+            <h3>Memphis Depay - FC Barcelona - CF - 85 OVR</h3>
+        
+        
+        
+        
+        <ea-tile-copy slot="copy">
+        
+        </ea-tile-copy>
+        
+        
+            
+        
+        
+    </ea-tile>
+</ea-container>
+
+<ea-elements-loader elements="ea-tile">
+</ea-elements-loader>
+<ea-container
+    slot="container"
+    
+        filter-key="All"
+    
+    >
+    <ea-tile
+        unresolved
+        slot="tile"
+        style="--ea-animation-index:8"
+        
+        
+        
+        
+            media="https://media.contentapi.ea.com/content/dam/ea/fifa/fifa-22/news/common/ratings-reveal/ratings-reveal-laliga-santander/antoine-griezmann.png.adapt.crop16x9.652w.png"
+        
+        
+        
+        
+        
+            title-text="Antoine Griezmann - Atlético de Madrid - ST - 85 OVR"
+        
+        
+        
+        
+        
+        
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+    >
+        
+            <h3>Antoine Griezmann - Atlético de Madrid - ST - 85 OVR</h3>
+        
+        
+        
+        
+        <ea-tile-copy slot="copy">
+        
+        </ea-tile-copy>
+        
+        
+            
+        
+        
+    </ea-tile>
+</ea-container>
+
+<ea-elements-loader elements="ea-tile">
+</ea-elements-loader>
+<ea-container
+    slot="container"
+    
+        filter-key="All"
+    
+    >
+    <ea-tile
+        unresolved
+        slot="tile"
+        style="--ea-animation-index:9"
+        
+        
+        
+        
+            media="https://media.contentapi.ea.com/content/dam/ea/fifa/fifa-22/news/common/ratings-reveal/ratings-reveal-laliga-santander/jordi-alba.png.adapt.crop16x9.652w.png"
+        
+        
+        
+        
+        
+            title-text="Jordi Alba - FC Barcelona - LB - 86 OVR"
+        
+        
+        
+        
+        
+        
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+    >
+        
+            <h3>Jordi Alba - FC Barcelona - LB - 86 OVR</h3>
+        
+        
+        
+        
+        <ea-tile-copy slot="copy">
+        
+        </ea-tile-copy>
+        
+        
+            
+        
+        
+    </ea-tile>
+</ea-container>
+
+<ea-elements-loader elements="ea-tile">
+</ea-elements-loader>
+<ea-container
+    slot="container"
+    
+        filter-key="All"
+    
+    >
+    <ea-tile
+        unresolved
+        slot="tile"
+        style="--ea-animation-index:10"
+        
+        
+        
+        
+            media="https://media.contentapi.ea.com/content/dam/ea/fifa/fifa-22/news/common/ratings-reveal/ratings-reveal-laliga-santander/parejo.png.adapt.crop16x9.652w.png"
+        
+        
+        
+        
+        
+            title-text="Parejo - Villarreal CF - CM - 86 OVR"
+        
+        
+        
+        
+        
+        
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+    >
+        
+            <h3>Parejo - Villarreal CF - CM - 86 OVR</h3>
+        
+        
+        
+        
+        <ea-tile-copy slot="copy">
+        
+        </ea-tile-copy>
+        
+        
+            
+        
+        
+    </ea-tile>
+</ea-container>
+
+<ea-elements-loader elements="ea-tile">
+</ea-elements-loader>
+<ea-container
+    slot="container"
+    
+        filter-key="All"
+    
+    >
+    <ea-tile
+        unresolved
+        slot="tile"
+        style="--ea-animation-index:11"
+        
+        
+        
+        
+            media="https://media.contentapi.ea.com/content/dam/ea/fifa/fifa-22/news/common/ratings-reveal/ratings-reveal-laliga-santander/marcos-llorente.png.adapt.crop16x9.652w.png"
+        
+        
+        
+        
+        
+            title-text="Marcos Llorente - Atlético de Madrid - CM - 86 OVR"
+        
+        
+        
+        
+        
+        
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+    >
+        
+            <h3>Marcos Llorente - Atlético de Madrid - CM - 86 OVR</h3>
+        
+        
+        
+        
+        <ea-tile-copy slot="copy">
+        
+        </ea-tile-copy>
+        
+        
+            
+        
+        
+    </ea-tile>
+</ea-container>
+
+<ea-elements-loader elements="ea-tile">
+</ea-elements-loader>
+<ea-container
+    slot="container"
+    
+        filter-key="All"
+    
+    >
+    <ea-tile
+        unresolved
+        slot="tile"
+        style="--ea-animation-index:12"
+        
+        
+        
+        
+            media="https://media.contentapi.ea.com/content/dam/ea/fifa/fifa-22/news/common/ratings-reveal/ratings-reveal-laliga-santander/gerard-moreno.png.adapt.crop16x9.652w.png"
+        
+        
+        
+        
+        
+            title-text="Gerard Moreno - Villarreal CF - ST - 86 OVR"
+        
+        
+        
+        
+        
+        
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+    >
+        
+            <h3>Gerard Moreno - Villarreal CF - ST - 86 OVR</h3>
+        
+        
+        
+        
+        <ea-tile-copy slot="copy">
+        
+        </ea-tile-copy>
+        
+        
+            
+        
+        
+    </ea-tile>
+</ea-container>
+
+<ea-elements-loader elements="ea-tile">
+</ea-elements-loader>
+<ea-container
+    slot="container"
+    
+        filter-key="All"
+    
+    >
+    <ea-tile
+        unresolved
+        slot="tile"
+        style="--ea-animation-index:13"
+        
+        
+        
+        
+            media="https://media.contentapi.ea.com/content/dam/ea/fifa/fifa-22/news/common/ratings-reveal/ratings-reveal-laliga-santander/sergio-busquets.png.adapt.crop16x9.652w.png"
+        
+        
+        
+        
+        
+            title-text="Sergio Busquets - FC Barcelona - CDM - 86 OVR"
+        
+        
+        
+        
+        
+        
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+    >
+        
+            <h3>Sergio Busquets - FC Barcelona - CDM - 86 OVR</h3>
+        
+        
+        
+        
+        <ea-tile-copy slot="copy">
+        
+        </ea-tile-copy>
+        
+        
+            
+        
+        
+    </ea-tile>
+</ea-container>
+
+<ea-elements-loader elements="ea-tile">
+</ea-elements-loader>
+<ea-container
+    slot="container"
+    
+        filter-key="All"
+    
+    >
+    <ea-tile
+        unresolved
+        slot="tile"
+        style="--ea-animation-index:14"
+        
+        
+        
+        
+            media="https://media.contentapi.ea.com/content/dam/ea/fifa/fifa-22/news/common/ratings-reveal/ratings-reveal-laliga-santander/frenkie-de-jong.png.adapt.crop16x9.652w.png"
+        
+        
+        
+        
+        
+            title-text="Frenkie de Jong - FC Barcelona - CM - 87 OVR"
+        
+        
+        
+        
+        
+        
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+    >
+        
+            <h3>Frenkie de Jong - FC Barcelona - CM - 87 OVR</h3>
+        
+        
+        
+        
+        <ea-tile-copy slot="copy">
+        
+        </ea-tile-copy>
+        
+        
+            
+        
+        
+    </ea-tile>
+</ea-container>
+
+<ea-elements-loader elements="ea-tile">
+</ea-elements-loader>
+<ea-container
+    slot="container"
+    
+        filter-key="All"
+    
+    >
+    <ea-tile
+        unresolved
+        slot="tile"
+        style="--ea-animation-index:15"
+        
+        
+        
+        
+            media="https://media.contentapi.ea.com/content/dam/ea/fifa/fifa-22/news/common/ratings-reveal/ratings-reveal-laliga-santander/luka-modric.png.adapt.crop16x9.652w.png"
+        
+        
+        
+        
+        
+            title-text="Luka Modrić - Real Madrid - CM - 87 OVR"
+        
+        
+        
+        
+        
+        
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+    >
+        
+            <h3>Luka Modrić - Real Madrid - CM - 87 OVR</h3>
+        
+        
+        
+        
+        <ea-tile-copy slot="copy">
+        
+        </ea-tile-copy>
+        
+        
+            
+        
+        
+    </ea-tile>
+</ea-container>
+
+<ea-elements-loader elements="ea-tile">
+</ea-elements-loader>
+<ea-container
+    slot="container"
+    
+        filter-key="All"
+    
+    >
+    <ea-tile
+        unresolved
+        slot="tile"
+        style="--ea-animation-index:16"
+        
+        
+        
+        
+            media="https://media.contentapi.ea.com/content/dam/ea/fifa/fifa-22/news/common/ratings-reveal/ratings-reveal-laliga-santander/sergio-aguero.png.adapt.crop16x9.652w.png"
+        
+        
+        
+        
+        
+            title-text="Sergio Agüero - FC Barcelona - ST - 87 OVR"
+        
+        
+        
+        
+        
+        
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+    >
+        
+            <h3>Sergio Agüero - FC Barcelona - ST - 87 OVR</h3>
+        
+        
+        
+        
+        <ea-tile-copy slot="copy">
+        
+        </ea-tile-copy>
+        
+        
+            
+        
+        
+    </ea-tile>
+</ea-container>
+
+<ea-elements-loader elements="ea-tile">
+</ea-elements-loader>
+<ea-container
+    slot="container"
+    
+        filter-key="All"
+    
+    >
+    <ea-tile
+        unresolved
+        slot="tile"
+        style="--ea-animation-index:17"
+        
+        
+        
+        
+            media="https://media.contentapi.ea.com/content/dam/ea/fifa/fifa-22/news/common/ratings-reveal/ratings-reveal-laliga-santander/toni-kroos.png.adapt.crop16x9.652w.png"
+        
+        
+        
+        
+        
+            title-text="Toni Kroos - Real Madrid - CM - 88 OVR"
+        
+        
+        
+        
+        
+        
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+    >
+        
+            <h3>Toni Kroos - Real Madrid - CM - 88 OVR</h3>
+        
+        
+        
+        
+        <ea-tile-copy slot="copy">
+        
+        </ea-tile-copy>
+        
+        
+            
+        
+        
+    </ea-tile>
+</ea-container>
+
+<ea-elements-loader elements="ea-tile">
+</ea-elements-loader>
+<ea-container
+    slot="container"
+    
+        filter-key="All"
+    
+    >
+    <ea-tile
+        unresolved
+        slot="tile"
+        style="--ea-animation-index:18"
+        
+        
+        
+        
+            media="https://media.contentapi.ea.com/content/dam/ea/fifa/fifa-22/news/common/ratings-reveal/ratings-reveal-laliga-santander/luis-suarez.png.adapt.crop16x9.652w.png"
+        
+        
+        
+        
+        
+            title-text="Luis Suárez - Atlético de Madrid - ST - 88 OVR"
+        
+        
+        
+        
+        
+        
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+    >
+        
+            <h3>Luis Suárez - Atlético de Madrid - ST - 88 OVR</h3>
+        
+        
+        
+        
+        <ea-tile-copy slot="copy">
+        
+        </ea-tile-copy>
+        
+        
+            
+        
+        
+    </ea-tile>
+</ea-container>
+
+<ea-elements-loader elements="ea-tile">
+</ea-elements-loader>
+<ea-container
+    slot="container"
+    
+        filter-key="All"
+    
+    >
+    <ea-tile
+        unresolved
+        slot="tile"
+        style="--ea-animation-index:19"
+        
+        
+        
+        
+            media="https://media.contentapi.ea.com/content/dam/ea/fifa/fifa-22/news/common/ratings-reveal/ratings-reveal-laliga-santander/casemiro.png.adapt.crop16x9.652w.png"
+        
+        
+        
+        
+        
+            title-text="Casemiro - Real Madrid - CDM - 89 OVR"
+        
+        
+        
+        
+        
+        
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+    >
+        
+            <h3>Casemiro - Real Madrid - CDM - 89 OVR</h3>
+        
+        
+        
+        
+        <ea-tile-copy slot="copy">
+        
+        </ea-tile-copy>
+        
+        
+            
+        
+        
+    </ea-tile>
+</ea-container>
+
+
+    <ea-elements-loader elements="ea-image">
+    </ea-elements-loader>
+    <ea-image
+        unresolved
+        tooltip=""
+        smallest="https://media.contentapi.ea.com/content/dam/ea/fifa/fifa-22/news/common/ratings-reveal/fifa-22-ratings-reveal-header-xl.jpg.adapt.320w.jpg"
+        small="https://media.contentapi.ea.com/content/dam/ea/fifa/fifa-22/news/common/ratings-reveal/fifa-22-ratings-reveal-header-xl.jpg.adapt.768w.jpg"
+        medium="https://media.contentapi.ea.com/content/dam/ea/fifa/fifa-22/news/common/ratings-reveal/fifa-22-ratings-reveal-header-xl.jpg.adapt.1024w.jpg"
+        large="https://media.contentapi.ea.com/content/dam/ea/fifa/fifa-22/news/common/ratings-reveal/fifa-22-ratings-reveal-header-xl.jpg.adapt.1456w.jpg"
+        largest="https://media.contentapi.ea.com/content/dam/ea/fifa/fifa-22/news/common/ratings-reveal/fifa-22-ratings-reveal-header-xl.jpg.adapt.1920w.jpg"
+        
+        
+        
+        
+            slot="image"
+        
+    >
+        <img
+            src="https://media.contentapi.ea.com/content/dam/ea/fifa/fifa-22/news/common/ratings-reveal/fifa-22-ratings-reveal-header-xl.jpg.adapt.320w.jpg"
+            alt=""
+            srcset="https://media.contentapi.ea.com/content/dam/ea/fifa/fifa-22/news/common/ratings-reveal/fifa-22-ratings-reveal-header-xl.jpg.adapt.320w.jpg 320w, https://media.contentapi.ea.com/content/dam/ea/fifa/fifa-22/news/common/ratings-reveal/fifa-22-ratings-reveal-header-xl.jpg.adapt.768w.jpg 768w, https://media.contentapi.ea.com/content/dam/ea/fifa/fifa-22/news/common/ratings-reveal/fifa-22-ratings-reveal-header-xl.jpg.adapt.1024w.jpg 1024w, https://media.contentapi.ea.com/content/dam/ea/fifa/fifa-22/news/common/ratings-reveal/fifa-22-ratings-reveal-header-xl.jpg.adapt.1456w.jpg 1320w, https://media.contentapi.ea.com/content/dam/ea/fifa/fifa-22/news/common/ratings-reveal/fifa-22-ratings-reveal-header-xl.jpg.adapt.1920w.jpg 1456w" />
+    </ea-image>
+
+
+<ea-elements-loader elements="ea-tile">
+</ea-elements-loader>
+<ea-container
+    slot="container"
+    
+        filter-key="All"
+    
+    >
+    <ea-tile
+        unresolved
+        slot="tile"
+        style="--ea-animation-index:20"
+        
+        
+        
+        
+            media="https://media.contentapi.ea.com/content/dam/ea/fifa/fifa-22/news/common/ratings-reveal/ratings-reveal-laliga-santander/thibaut-courtois.png.adapt.crop16x9.652w.png"
+        
+        
+        
+        
+        
+            title-text="Thibaut Courtois - Real Madrid - GK - 89 OVR"
+        
+        
+        
+        
+        
+        
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+    >
+        
+            <h3>Thibaut Courtois - Real Madrid - GK - 89 OVR</h3>
+        
+        
+        
+        
+        <ea-tile-copy slot="copy">
+        
+        </ea-tile-copy>
+        
+        
+            
+        
+        
+    </ea-tile>
+</ea-container>
+
+<ea-elements-loader elements="ea-tile">
+</ea-elements-loader>
+<ea-container
+    slot="container"
+    
+        filter-key="All"
+    
+    >
+    <ea-tile
+        unresolved
+        slot="tile"
+        style="--ea-animation-index:21"
+        
+        
+        
+        
+            media="https://media.contentapi.ea.com/content/dam/ea/fifa/fifa-22/news/common/ratings-reveal/ratings-reveal-laliga-santander/karim-benzema.png.adapt.crop16x9.652w.png"
+        
+        
+        
+        
+        
+            title-text="Karim Benzema - Real Madrid - CF - 89 OVR"
+        
+        
+        
+        
+        
+        
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+    >
+        
+            <h3>Karim Benzema - Real Madrid - CF - 89 OVR</h3>
+        
+        
+        
+        
+        <ea-tile-copy slot="copy">
+        
+        </ea-tile-copy>
+        
+        
+            
+        
+        
+    </ea-tile>
+</ea-container>
+
+<ea-elements-loader elements="ea-tile">
+</ea-elements-loader>
+<ea-container
+    slot="container"
+    
+        filter-key="All"
+    
+    >
+    <ea-tile
+        unresolved
+        slot="tile"
+        style="--ea-animation-index:22"
+        
+        
+        
+        
+            media="https://media.contentapi.ea.com/content/dam/ea/fifa/fifa-22/news/common/ratings-reveal/ratings-reveal-laliga-santander/marc-andre-ter-stegen.png.adapt.crop16x9.652w.png"
+        
+        
+        
+        
+        
+            title-text="Marc-André ter Stegen - FC Barcelona - GK - 90 OVR"
+        
+        
+        
+        
+        
+        
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+    >
+        
+            <h3>Marc-André ter Stegen - FC Barcelona - GK - 90 OVR</h3>
+        
+        
+        
+        
+        <ea-tile-copy slot="copy">
+        
+        </ea-tile-copy>
+        
+        
+            
+        
+        
+    </ea-tile>
+</ea-container>
+
+<ea-elements-loader elements="ea-tile">
+</ea-elements-loader>
+<ea-container
+    slot="container"
+    
+        filter-key="All"
+    
+    >
+    <ea-tile
+        unresolved
+        slot="tile"
+        style="--ea-animation-index:23"
+        
+        
+        
+        
+            media="https://media.contentapi.ea.com/content/dam/ea/fifa/fifa-22/news/common/ratings-reveal/ratings-reveal-laliga-santander/jan-oblak.png.adapt.crop16x9.652w.png"
+        
+        
+        
+        
+        
+            title-text="Jan Oblak - Atlético de Madrid - GK - 91 OVR"
+        
+        
+        
+        
+        
+        
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+    >
+        
+            <h3>Jan Oblak - Atlético de Madrid - GK - 91 OVR</h3>
+        
+        
+        
+        
+        <ea-tile-copy slot="copy">
+        
+        </ea-tile-copy>
+        
+        
+            
+        
+        
+    </ea-tile>
+</ea-container>
+
+    
+
+
+</ea-grid>
+
+<ea-elements-loader elements="ea-grid">
+</ea-elements-loader>
+<ea-grid
+    
+
+    type="ordered"
+
+
+    tile-media-shape="rectangle"
+
+
+
+    layout="2up"
+
+
+    tile-type="vertical"
+
+
+    tile-text-align="center"
+
+
+    tile-text-color="light"
+
+
+    tile-color="none"
+
+
+
+
+
+
+
+    hide-ctas
+
+
+    hide-brand-stroke
+
+
+
+    spacing-top="medium"
+
+
+    spacing-bottom="medium"
+
+
+
+
+    
+    
+        two-up-on-mobile
+    
+    
+        tile-scrim-color="none"
+    
+    
+        tile-scrim-opacity="medium"
+    
+    tile-align="center"
+    
+    
+    
+    
+    
+    
+    
+    animate-in-order=""
+    animate-out-order=""
+    
+    unresolved
+>
+    
+    
+<ea-elements-loader elements="ea-spacer">
+</ea-elements-loader>
+<ea-spacer
+    unresolved
+    
+        smallest="3rem"
+    
+    
+        small="3rem"
+    
+    
+        medium="3rem"
+    
+    
+        large="3rem"
+    
+    
+        largest="3rem"
+    
+>
+</ea-spacer>
+
+    
+
+
+</ea-grid>
+
+<ea-elements-loader elements="ea-cta">
+</ea-elements-loader>
+<ea-cta
+    
+        slot="cta"
+    
+    
+        type="standard"
+    
+    
+        link-url="/en-au/games/fifa/fifa-22/ratings/"
+    
+    
+    
+        link-text="See more FIFA 22 Ratings"
+    
+    
+        icon="none"
+    
+    
+    
+        fill-color="brand"
+    
+    
+        text-color="dark"
+    
+    
+        stroke-color="none"
+    
+    
+        target="_self"
+    
+    
+    
+    
+    
+        intent="navigation"
+    
+    
+    
+    
+        emphasis="primary"
+    
+    
+    
+    
+    
+    unresolved
+>
+    <a
+        
+            href="/en-au/games/fifa/fifa-22/ratings/"
+        
+        
+    >
+        
+            See more FIFA 22 Ratings
+        
+    </a>
+</ea-cta>
+
+<ea-elements-loader elements="ea-text">
+</ea-elements-loader>
+<ea-text
+    unresolved
+    slot="text"
+    
+        text-color="light"
+    
+>
+    <p>&nbsp;</p>
+<hr>
+
+<p>FIFA 22 launches October 1, 2021 on PlayStation 5, Xbox Series X|S, Stadia, PlayStation 4, Xbox One, and PC. <a href="https://www.ea.com/en-au/games/fifa/fifa-22/buy">Pre-order* now</a>!</p>
+<p>Follow EASPORTSFIFA on <a href="https://twitter.com/easportsfifa">Twitter</a>, <a href="https://instagram.com/easportsfifa">Instagram</a>, and <a href="https://youtube.com/easportsfifa">YouTube</a> for all the latest news and updates.&nbsp;</p>
+<p><a href="https://www.ea.com/en-au/games/fifa/fifa-21/newsletter">Sign up</a> to receive emails about EA SPORTS FIFA and EA products, news, events, and promotions.</p>
+<p>*Conditions and restrictions apply. See<a href="https://www.ea.com/en-au/games/fifa/fifa-22/game-offer-and-disclaimers"> https://www.ea.com/games/fifa/fifa-22/game-offer-and-disclaimers</a> for details.</p>
+
+    
+</ea-text>
+
+</ea-section-column>
+
+    
+</ea-section>
+
+
+
+    
+<ea-elements-loader elements="ea-section">
+</ea-elements-loader>
+<ea-section
+    unresolved
+    slot="section"
+    
+    
+        type="railed"
+    
+    
+        layout="100"
+    
+    
+    
+        background-color="none"
+    
+    
+    
+        background-overflow="visible"
+    
+    
+        spacing-top="medium"
+    
+    
+        spacing-bottom="none"
+    
+    
+    
+    
+    
+>
+    
+    
+
+
+<ea-section-column
+    slot="section-column"
+    
+        indent-left=""
+    
+    
+        indent-right=""
+    
+    
+        text-align="left"
+    
+    
+    
+>
+    
+<ea-elements-loader elements="ea-subheading">
+</ea-elements-loader>
+<ea-subheading
+    unresolved
+    
+        type="ordered"
+    
+    
+        layout="small"
+    
+    
+        text-align="center"
+    
+    
+        text-color="light"
+    
+    
+    
+        title-text="RELATED NEWS"
+    
+    
+    
+        spacing-top="none"
+    
+    
+        spacing-bottom="medium"
+    
+>
+    
+    
+        <h3>RELATED NEWS</h3>
+    
+    
+</ea-subheading>
+
+<ea-elements-loader elements="ea-grid">
+</ea-elements-loader>
+<ea-grid
+    
+
+    type="ordered"
+
+
+    tile-media-shape="rectangle"
+
+
+
+    layout="3up"
+
+
+    tile-type="vertical"
+
+
+    tile-text-align="left"
+
+
+    tile-text-color="light"
+
+
+    tile-color="dark"
+
+
+
+
+
+
+
+    hide-ctas
+
+
+    hide-brand-stroke
+
+
+    hide-byline
+
+
+    spacing-top="none"
+
+
+    spacing-bottom="none"
+
+
+
+
+    
+    
+    
+        tile-scrim-color="none"
+    
+    
+        tile-scrim-opacity="medium"
+    
+    tile-align="center"
+    
+    
+        cards=""
+    
+    
+    
+        background-color="none"
+    
+    
+    
+        ajax-url="/pagination/2-kaMtpnGhMoimHOw0xRasA0NPAVGNdqHzpTKGBu2L7ZgF%2FHgStAiktWzs7%2BwnJXkcui4RdoqIZyCKvRiRTE9OMv0pOutcJyXrQIgp5t%2F0IQWYr1wPbgjn2AAYaNEGL8vGS7aSHcLAjGF4eMzSHS0vetUHbrzbQW%2BZuUUX3MQ2jcYwHdyWnQKMFi%2BKIqoky%2BLsNzwaX7%2FBveHouYCu2Rqgmiq2rIx%2B"
+    
+    
+        total-count="142"
+    
+    animate-in-order=""
+    animate-out-order=""
+    
+    unresolved
+>
+    
+    
+
+    
+<ea-elements-loader elements="ea-tile">
+</ea-elements-loader>
+<ea-container
+    slot="container"
+    
+        filter-key="All"
+    
+    >
+    <ea-tile
+        unresolved
+        slot="tile"
+        style="--ea-animation-index:0"
+        
+        
+        
+        
+            media="https://media.contentapi.ea.com/content/dam/ea/fifa/fifa-23/images/2023/07/f23-pitchnotes-featureimg-16x9-1-deepdive.jpg.adapt.crop16x9.431p.jpg"
+        
+        
+        
+            eyebrow-text="11/08/2022"
+        
+        
+        
+            title-text="FIFA 23 | Pitch Notes - FUT Deep Dive"
+        
+        
+        
+        
+        
+        
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+    >
+        
+            <h3>FIFA 23 | Pitch Notes - FUT Deep Dive</h3>
+        
+        
+            <div>11/08/2022</div>
+            
+        
+        
+        
+        <ea-tile-copy slot="copy">
+        
+            FUT 23 brings a new way to play and earn rewards with FUT Moments, a total overhaul to the Chemistry system that gives you more squad-building flexibility, cross-play, new FUT Heroes, and much more as you build your dream squ…
+        
+        </ea-tile-copy>
+        
+        
+            
+<ea-elements-loader elements="ea-cta">
+</ea-elements-loader>
+<ea-cta
+    
+        slot="cta"
+    
+    
+        type="standard"
+    
+    
+        link-url="/en-us/games/fifa/fifa-22/news/pitch-notes-fifa-23-fut-deep-dive"
+    
+    
+    
+    
+        icon="none"
+    
+    
+    
+        fill-color="none"
+    
+    
+        text-color="dark"
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    unresolved
+>
+    <a
+        
+            href="/en-us/games/fifa/fifa-22/news/pitch-notes-fifa-23-fut-deep-dive"
+        
+        
+    >
+        
+    </a>
+</ea-cta>
+
+        
+        
+    </ea-tile>
+</ea-container>
+
+<ea-elements-loader elements="ea-tile">
+</ea-elements-loader>
+<ea-container
+    slot="container"
+    
+        filter-key="All"
+    
+    >
+    <ea-tile
+        unresolved
+        slot="tile"
+        style="--ea-animation-index:1"
+        
+        
+        
+        
+            media="https://media.contentapi.ea.com/content/dam/ea/fifa/fifa-23/images/2023/07/f23-pitchnotes-featureimg-16x9-1-deepdive.jpg.adapt.crop16x9.431p.jpg"
+        
+        
+        
+            eyebrow-text="08/08/2022"
+        
+        
+        
+            title-text="FIFA 23 | Pitch Notes - Pro Clubs/VOLTA Deep Dive"
+        
+        
+        
+        
+        
+        
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+    >
+        
+            <h3>FIFA 23 | Pitch Notes - Pro Clubs/VOLTA Deep Dive</h3>
+        
+        
+            <div>08/08/2022</div>
+            
+        
+        
+        
+        <ea-tile-copy slot="copy">
+        
+            With the scale of such an important feature, our goal is to bring you the best possible experiences.  As we look at our cross-play future, we’re focused on matchmaking in Pro Clubs, VOLTA, and FUT Co-op, as well as cross-plat…
+        
+        </ea-tile-copy>
+        
+        
+            
+<ea-elements-loader elements="ea-cta">
+</ea-elements-loader>
+<ea-cta
+    
+        slot="cta"
+    
+    
+        type="standard"
+    
+    
+        link-url="/en-us/games/fifa/fifa-22/news/pitch-notes-fifa-23-pro-clubs-volta-deep-dive"
+    
+    
+    
+    
+        icon="none"
+    
+    
+    
+        fill-color="none"
+    
+    
+        text-color="dark"
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    unresolved
+>
+    <a
+        
+            href="/en-us/games/fifa/fifa-22/news/pitch-notes-fifa-23-pro-clubs-volta-deep-dive"
+        
+        
+    >
+        
+    </a>
+</ea-cta>
+
+        
+        
+    </ea-tile>
+</ea-container>
+
+<ea-elements-loader elements="ea-tile">
+</ea-elements-loader>
+<ea-container
+    slot="container"
+    
+        filter-key="All"
+    
+    >
+    <ea-tile
+        unresolved
+        slot="tile"
+        style="--ea-animation-index:2"
+        
+        
+        
+        
+            media="https://media.contentapi.ea.com/content/dam/ea/fifa/fifa-23/images/2023/07/f23-pitchnotes-featureimg-16x9-1-deepdive.jpg.adapt.crop16x9.431p.jpg"
+        
+        
+        
+            eyebrow-text="01/08/2022"
+        
+        
+        
+            title-text="FIFA 23 | Pitch Notes - Career Deep Dive "
+        
+        
+        
+        
+        
+        
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+    >
+        
+            <h3>FIFA 23 | Pitch Notes - Career Deep Dive </h3>
+        
+        
+            <div>01/08/2022</div>
+            
+        
+        
+        
+        <ea-tile-copy slot="copy">
+        
+            Our additions to FIFA 23 have been primarily driven by the goal of giving more freedom to how you approach Career Mode, both in terms of gameplay and customization. 
+        
+        </ea-tile-copy>
+        
+        
+            
+<ea-elements-loader elements="ea-cta">
+</ea-elements-loader>
+<ea-cta
+    
+        slot="cta"
+    
+    
+        type="standard"
+    
+    
+        link-url="/en-us/games/fifa/fifa-22/news/pitch-notes-fifa-23-career-deep-dive"
+    
+    
+    
+    
+        icon="none"
+    
+    
+    
+        fill-color="none"
+    
+    
+        text-color="dark"
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    unresolved
+>
+    <a
+        
+            href="/en-us/games/fifa/fifa-22/news/pitch-notes-fifa-23-career-deep-dive"
+        
+        
+    >
+        
+    </a>
+</ea-cta>
+
+        
+        
+    </ea-tile>
+</ea-container>
+
+
+
+    
+
+
+</ea-grid>
+
+<ea-elements-loader elements="ea-spacer">
+</ea-elements-loader>
+<ea-spacer
+    unresolved
+    
+        smallest="3rem"
+    
+    
+        small="3rem"
+    
+    
+        medium="3rem"
+    
+    
+        large="5rem"
+    
+    
+        largest="5rem"
+    
+>
+</ea-spacer>
+
+</ea-section-column>
+
+    
+</ea-section>
+
+
+
+
+
+    
+        
+    
+
+
+
+    
+    <div style="display: none;"></div>
+</main>
+<footer role="contentinfo">
+    
+
+    
+        
+            
+                
+
+    
+<ea-elements-loader elements="ea-local-footer, ea-local-links, ea-local-link, ea-social-links, ea-social-link, ea-hybrid-regional-rating">
+</ea-elements-loader>
+<ea-local-footer
+    theme="light"
+    sal-game-slug="fifa-22"
+    rating-lang="en"
+    unresolved
+>
+    <ea-local-links
+        slot="local-links"
+        title-text="FIFA 22"
+        text-color="light"
+        unresolved
+    >
+    
+        <ea-local-link
+            slot="local-link"
+            link-url="/en-au/games/fifa/fifa-22"
+            link-title="About FIFA 22"
+            link-text="About FIFA 22"
+            text-color="light"
+            unresolved
+        >
+            <a
+                href="/en-au/games/fifa/fifa-22"
+                title="About FIFA 22"
+            >About FIFA 22</a>
+        </ea-local-link>
+    
+        <ea-local-link
+            slot="local-link"
+            link-url="/en-au/games/fifa/fifa-22/news"
+            link-title="News"
+            link-text="News"
+            text-color="light"
+            unresolved
+        >
+            <a
+                href="/en-au/games/fifa/fifa-22/news"
+                title="News"
+            >News</a>
+        </ea-local-link>
+    
+        <ea-local-link
+            slot="local-link"
+            link-url="/en-au/games/fifa/fifa-mobile"
+            link-title="FIFA Mobile"
+            link-text="FIFA Mobile"
+            text-color="light"
+            unresolved
+        >
+            <a
+                href="/en-au/games/fifa/fifa-mobile"
+                title="FIFA Mobile"
+            >FIFA Mobile</a>
+        </ea-local-link>
+    
+        <ea-local-link
+            slot="local-link"
+            link-url="/en-au/games/fifa/fifa-22/buy"
+            link-title="Get FIFA 22"
+            link-text="Get FIFA 22"
+            text-color="light"
+            unresolved
+        >
+            <a
+                href="/en-au/games/fifa/fifa-22/buy"
+                title="Get FIFA 22"
+            >Get FIFA 22</a>
+        </ea-local-link>
+    
+    </ea-local-links>
+
+    <ea-social-links
+        slot="social-links"
+        text-color="light"
+        title-text="Follow FIFA"
+        unresolved
+    >
+    
+        <ea-social-link
+            slot="social-link"
+            link-url="https://www.twitch.tv/easportsfifa"
+            link-title="Twitch"
+            link-target="_blank"
+            text-color="light"
+            social-network="twitch"
+            unresolved
+        >
+            <a
+                href="https://www.twitch.tv/easportsfifa"
+                title="Twitch"
+            >twitch</a>
+        </ea-social-link>
+    
+        <ea-social-link
+            slot="social-link"
+            link-url="https://twitter.com/easportsfifa"
+            link-title="Twitter"
+            link-target="_blank"
+            text-color="light"
+            social-network="twitter"
+            unresolved
+        >
+            <a
+                href="https://twitter.com/easportsfifa"
+                title="Twitter"
+            >twitter</a>
+        </ea-social-link>
+    
+        <ea-social-link
+            slot="social-link"
+            link-url="https://www.instagram.com/easportsfifa"
+            link-title="Instagram"
+            link-target="_blank"
+            text-color="light"
+            social-network="instagram"
+            unresolved
+        >
+            <a
+                href="https://www.instagram.com/easportsfifa"
+                title="Instagram"
+            >instagram</a>
+        </ea-social-link>
+    
+        <ea-social-link
+            slot="social-link"
+            link-url="https://www.facebook.com/easportsfifa"
+            link-title="Facebook"
+            link-target="_blank"
+            text-color="light"
+            social-network="facebook"
+            unresolved
+        >
+            <a
+                href="https://www.facebook.com/easportsfifa"
+                title="Facebook"
+            >facebook</a>
+        </ea-social-link>
+    
+    </ea-social-links>
+
+    
+        
+<ea-elements-loader elements="ea-studio-link">
+</ea-elements-loader>
+<ea-studio-link
+    unresolved
+    slot="studio-link"
+    link-url="https://www.fifa.com/"
+    link-title="Official FIFA Website"
+    
+    
+        image-smallest="https://media.contentapi.ea.com/content/dam/ea/fifa/fifa-21/global_assets/common/navigation/fifa-21-fifa-logo-footer-olp-white.svg"
+        image-small="https://media.contentapi.ea.com/content/dam/ea/fifa/fifa-21/global_assets/common/navigation/fifa-21-fifa-logo-footer-olp-white.svg"
+        image-medium="https://media.contentapi.ea.com/content/dam/ea/fifa/fifa-21/global_assets/common/navigation/fifa-21-fifa-logo-footer-olp-white.svg"
+        image-large="https://media.contentapi.ea.com/content/dam/ea/fifa/fifa-21/global_assets/common/navigation/fifa-21-fifa-logo-footer-olp-white.svg"
+        image-largest="https://media.contentapi.ea.com/content/dam/ea/fifa/fifa-21/global_assets/common/navigation/fifa-21-fifa-logo-footer-olp-white.svg"
+        image-alt=""
+        
+        
+    
+>
+    <a
+        href="https://www.fifa.com/"
+        title="Official FIFA Website"
+    ></a>
+</ea-studio-link>
+
+    
+
+    
+        
+<ea-elements-loader elements="ea-rating-link">
+</ea-elements-loader>
+<ea-rating-link
+    unresolved
+    slot="rating-link"
+    link-url="http://www.classification.gov.au/Pages/Home.aspx"
+    link-title="ACB"
+    
+        image-max-height="90px"
+    
+    
+        image-smallest="https://media.contentapi.ea.com/content/dam/gin/common/rating-icons/rating-pending-logos-2020/acb-(australia)/acb-aus-g-181x62.svg"
+        image-small="https://media.contentapi.ea.com/content/dam/gin/common/rating-icons/rating-pending-logos-2020/acb-(australia)/acb-aus-g-181x62.svg"
+        image-medium="https://media.contentapi.ea.com/content/dam/gin/common/rating-icons/rating-pending-logos-2020/acb-(australia)/acb-aus-g-181x62.svg"
+        image-large="https://media.contentapi.ea.com/content/dam/gin/common/rating-icons/rating-pending-logos-2020/acb-(australia)/acb-aus-g-181x62.svg"
+        image-largest="https://media.contentapi.ea.com/content/dam/gin/common/rating-icons/rating-pending-logos-2020/acb-(australia)/acb-aus-g-181x62.svg"
+        image-alt=""
+        
+        
+    
+>
+    <a
+        href="http://www.classification.gov.au/Pages/Home.aspx"
+        title="ACB"
+    ></a>
+</ea-rating-link>
+
+    
+
+    
+<ea-elements-loader elements="ea-hybrid-regional-rating"></ea-elements-loader>
+
+<ea-hybrid-regional-rating
+    
+    
+        slug="fifa-22"
+    
+    
+        slot="regional-rating"
+    
+    
+        lang="en"
+    
+>
+</ea-hybrid-regional-rating>
+
+
+    
+</ea-local-footer>
+
+
+
+            
+        
+    
+
+
+    
+
+    
+        
+            
+                
+
+    
+<ea-elements-loader elements="ea-network-footer, ea-network-legal, ea-link, ea-content-loader">
+</ea-elements-loader>
+<ea-network-footer
+    theme="dark"
+    
+    
+        logo-image="https://media.contentapi.ea.com/content/dam/eacom/en-us/common/ea-1-1b-medallion-mediumgray.png"
+        logo-tooltip=""
+    
+    
+        logo-link-url="https://www.ea.com"
+        logo-link-text="EA"
+        logo-link-tooltip="EA"
+    
+    unresolved
+>
+    
+        <img
+            src="https://media.contentapi.ea.com/content/dam/eacom/en-us/common/ea-1-1b-medallion-mediumgray.png"
+            alt=""
+        />
+    
+    
+        
+            <ea-link
+                slot="link"
+                link-href="/en-au/games"
+                link-title="Browse Games"
+                link-text="Browse Games"
+                text-color="dark"
+                unresolved
+            >
+                <a
+                    href="/en-au/games"
+                    title="Browse Games"
+                >Browse Games</a>
+            </ea-link>
+        
+            <ea-link
+                slot="link"
+                link-href="/en-au/news"
+                link-title="Latest News"
+                link-text="Latest News"
+                text-color="dark"
+                unresolved
+            >
+                <a
+                    href="/en-au/news"
+                    title="Latest News"
+                >Latest News</a>
+            </ea-link>
+        
+            <ea-link
+                slot="link"
+                link-href="https://help.ea.com/au/"
+                link-title="Help Center"
+                link-text="Help Center"
+                text-color="dark"
+                unresolved
+            >
+                <a
+                    href="https://help.ea.com/au/"
+                    title="Help Center"
+                >Help Center</a>
+            </ea-link>
+        
+            <ea-link
+                slot="link"
+                link-href="/en-au/forums"
+                link-title="EA Forums"
+                link-text="EA Forums"
+                text-color="dark"
+                unresolved
+            >
+                <a
+                    href="/en-au/forums"
+                    title="EA Forums"
+                >EA Forums</a>
+            </ea-link>
+        
+            <ea-link
+                slot="link"
+                link-href="/en-au/about"
+                link-title="About Us"
+                link-text="About Us"
+                text-color="dark"
+                unresolved
+            >
+                <a
+                    href="/en-au/about"
+                    title="About Us"
+                >About Us</a>
+            </ea-link>
+        
+            <ea-link
+                slot="link"
+                link-href="/en-au/careers"
+                link-title="Careers"
+                link-text="Careers"
+                text-color="dark"
+                unresolved
+            >
+                <a
+                    href="/en-au/careers"
+                    title="Careers"
+                >Careers</a>
+            </ea-link>
+        
+    
+    <ea-elements-loader elements="ea-regional-pricing-selector">
+</ea-elements-loader>
+<ea-regional-pricing-selector
+slot="regional-pricing-selector"
+theme="dark"
+label-text="Regional Pricing"
+
+unresolved
+    >
+
+    <ea-regional-pricing-selector-option
+    slot="regional-pricing-selector-option"
+    value="AT"
+    >Austria</ea-regional-pricing-selector-option>
+
+    <ea-regional-pricing-selector-option
+    slot="regional-pricing-selector-option"
+    value="BE"
+    >Belgium</ea-regional-pricing-selector-option>
+
+    <ea-regional-pricing-selector-option
+    slot="regional-pricing-selector-option"
+    value="BG"
+    >Bulgaria</ea-regional-pricing-selector-option>
+
+    <ea-regional-pricing-selector-option
+    slot="regional-pricing-selector-option"
+    value="HR"
+    >Croatia</ea-regional-pricing-selector-option>
+
+    <ea-regional-pricing-selector-option
+    slot="regional-pricing-selector-option"
+    value="CY"
+    >Cyprus</ea-regional-pricing-selector-option>
+
+    <ea-regional-pricing-selector-option
+    slot="regional-pricing-selector-option"
+    value="CZ"
+    >Czech Republic</ea-regional-pricing-selector-option>
+
+    <ea-regional-pricing-selector-option
+    slot="regional-pricing-selector-option"
+    value="DK"
+    >Denmark</ea-regional-pricing-selector-option>
+
+    <ea-regional-pricing-selector-option
+    slot="regional-pricing-selector-option"
+    value="EE"
+    >Estonia</ea-regional-pricing-selector-option>
+
+    <ea-regional-pricing-selector-option
+    slot="regional-pricing-selector-option"
+    value="FI"
+    >Finland</ea-regional-pricing-selector-option>
+
+    <ea-regional-pricing-selector-option
+    slot="regional-pricing-selector-option"
+    value="FR"
+    >France</ea-regional-pricing-selector-option>
+
+    <ea-regional-pricing-selector-option
+    slot="regional-pricing-selector-option"
+    value="DE"
+    >Germany</ea-regional-pricing-selector-option>
+
+    <ea-regional-pricing-selector-option
+    slot="regional-pricing-selector-option"
+    value="GR"
+    >Greece</ea-regional-pricing-selector-option>
+
+    <ea-regional-pricing-selector-option
+    slot="regional-pricing-selector-option"
+    value="HU"
+    >Hungary</ea-regional-pricing-selector-option>
+
+    <ea-regional-pricing-selector-option
+    slot="regional-pricing-selector-option"
+    value="IS"
+    >Iceland</ea-regional-pricing-selector-option>
+
+    <ea-regional-pricing-selector-option
+    slot="regional-pricing-selector-option"
+    value="IE"
+    >Ireland</ea-regional-pricing-selector-option>
+
+    <ea-regional-pricing-selector-option
+    slot="regional-pricing-selector-option"
+    value="IT"
+    >Italy</ea-regional-pricing-selector-option>
+
+    <ea-regional-pricing-selector-option
+    slot="regional-pricing-selector-option"
+    value="LV"
+    >Latvia</ea-regional-pricing-selector-option>
+
+    <ea-regional-pricing-selector-option
+    slot="regional-pricing-selector-option"
+    value="LI"
+    >Liechtenstein</ea-regional-pricing-selector-option>
+
+    <ea-regional-pricing-selector-option
+    slot="regional-pricing-selector-option"
+    value="LT"
+    >Lithuania</ea-regional-pricing-selector-option>
+
+    <ea-regional-pricing-selector-option
+    slot="regional-pricing-selector-option"
+    value="LU"
+    >Luxembourg</ea-regional-pricing-selector-option>
+
+    <ea-regional-pricing-selector-option
+    slot="regional-pricing-selector-option"
+    value="MT"
+    >Malta</ea-regional-pricing-selector-option>
+
+    <ea-regional-pricing-selector-option
+    slot="regional-pricing-selector-option"
+    value="NL"
+    >Netherlands</ea-regional-pricing-selector-option>
+
+    <ea-regional-pricing-selector-option
+    slot="regional-pricing-selector-option"
+    value="NO"
+    >Norway</ea-regional-pricing-selector-option>
+
+    <ea-regional-pricing-selector-option
+    slot="regional-pricing-selector-option"
+    value="PL"
+    >Poland</ea-regional-pricing-selector-option>
+
+    <ea-regional-pricing-selector-option
+    slot="regional-pricing-selector-option"
+    value="PT"
+    >Portugal</ea-regional-pricing-selector-option>
+
+    <ea-regional-pricing-selector-option
+    slot="regional-pricing-selector-option"
+    value="RO"
+    >Romania</ea-regional-pricing-selector-option>
+
+    <ea-regional-pricing-selector-option
+    slot="regional-pricing-selector-option"
+    value="SK"
+    >Slovenia</ea-regional-pricing-selector-option>
+
+    <ea-regional-pricing-selector-option
+    slot="regional-pricing-selector-option"
+    value="ES"
+    >Spain</ea-regional-pricing-selector-option>
+
+    <ea-regional-pricing-selector-option
+    slot="regional-pricing-selector-option"
+    value="SE"
+    >Sweden</ea-regional-pricing-selector-option>
+
+    <ea-regional-pricing-selector-option
+    slot="regional-pricing-selector-option"
+    value="CH"
+    >Switzerland</ea-regional-pricing-selector-option>
+
+</ea-regional-pricing-selector>
+    
+<ea-elements-loader elements="ea-locale-selector">
+</ea-elements-loader>
+<ea-locale-selector
+    slot="locale-selector"
+    theme="dark"
+    value="en-au"
+    label-text="Language"
+    
+    unresolved
+    >
+    
+        <ea-locale-selector-option
+            slot="locale-selector-option"
+            value="en-us"
+        >United States</ea-locale-selector-option>
+    
+        <ea-locale-selector-option
+            slot="locale-selector-option"
+            value="en-gb"
+        >United Kingdom</ea-locale-selector-option>
+    
+        <ea-locale-selector-option
+            slot="locale-selector-option"
+            value="ar-sa"
+        >العربية</ea-locale-selector-option>
+    
+        <ea-locale-selector-option
+            slot="locale-selector-option"
+            value="en-au"
+        >Australia</ea-locale-selector-option>
+    
+        <ea-locale-selector-option
+            slot="locale-selector-option"
+            value="pt-br"
+        >Brasil</ea-locale-selector-option>
+    
+        <ea-locale-selector-option
+            slot="locale-selector-option"
+            value="zh-hk"
+        >繁體中文(香港)</ea-locale-selector-option>
+    
+        <ea-locale-selector-option
+            slot="locale-selector-option"
+            value="cs-cz"
+        >Česká republika</ea-locale-selector-option>
+    
+        <ea-locale-selector-option
+            slot="locale-selector-option"
+            value="da-dk"
+        >Danmark</ea-locale-selector-option>
+    
+        <ea-locale-selector-option
+            slot="locale-selector-option"
+            value="de-de"
+        >Deutschland</ea-locale-selector-option>
+    
+        <ea-locale-selector-option
+            slot="locale-selector-option"
+            value="es-es"
+        >España</ea-locale-selector-option>
+    
+        <ea-locale-selector-option
+            slot="locale-selector-option"
+            value="fr-fr"
+        >France</ea-locale-selector-option>
+    
+        <ea-locale-selector-option
+            slot="locale-selector-option"
+            value="it-it"
+        >Italia</ea-locale-selector-option>
+    
+        <ea-locale-selector-option
+            slot="locale-selector-option"
+            value="ja-jp"
+        >日本</ea-locale-selector-option>
+    
+        <ea-locale-selector-option
+            slot="locale-selector-option"
+            value="ko-kr"
+        >대한민국</ea-locale-selector-option>
+    
+        <ea-locale-selector-option
+            slot="locale-selector-option"
+            value="es-mx"
+        >México</ea-locale-selector-option>
+    
+        <ea-locale-selector-option
+            slot="locale-selector-option"
+            value="nl-nl"
+        >Nederland</ea-locale-selector-option>
+    
+        <ea-locale-selector-option
+            slot="locale-selector-option"
+            value="nb-no"
+        >Norge</ea-locale-selector-option>
+    
+        <ea-locale-selector-option
+            slot="locale-selector-option"
+            value="pl-pl"
+        >Polska</ea-locale-selector-option>
+    
+        <ea-locale-selector-option
+            slot="locale-selector-option"
+            value="ru-ru"
+        >Россия</ea-locale-selector-option>
+    
+        <ea-locale-selector-option
+            slot="locale-selector-option"
+            value="sv-se"
+        >Sverige</ea-locale-selector-option>
+    
+        <ea-locale-selector-option
+            slot="locale-selector-option"
+            value="tr-tr"
+        >Türkiye</ea-locale-selector-option>
+    
+</ea-locale-selector>
+
+    <ea-network-legal
+        slot="network-legal"
+        copyright-text="© 2022 Electronic Arts Inc."
+        text-color="dark"
+        unresolved
+    >
+        
+            <ea-link
+                slot="link"
+                link-href="http://www.ea.com/en-au/legal"
+                link-title="Legal"
+                link-text="Legal"
+                text-color="dark"
+                unresolved
+            >
+                <a
+                    href="http://www.ea.com/en-au/legal"
+                    title="Legal"
+                >Legal</a>
+            </ea-link>
+        
+            <ea-link
+                slot="link"
+                link-href="http://www.ea.com/en-au/service-updates"
+                link-title="Online Service Updates"
+                link-text="Online Service Updates"
+                text-color="dark"
+                unresolved
+            >
+                <a
+                    href="http://www.ea.com/en-au/service-updates"
+                    title="Online Service Updates"
+                >Online Service Updates</a>
+            </ea-link>
+        
+            <ea-link
+                slot="link"
+                link-href="https://www.ea.com/en-au/terms-of-service"
+                link-title="User Agreement"
+                link-text="User Agreement"
+                text-color="dark"
+                unresolved
+            >
+                <a
+                    href="https://www.ea.com/en-au/terms-of-service"
+                    title="User Agreement"
+                >User Agreement</a>
+            </ea-link>
+        
+            <ea-link
+                slot="link"
+                link-href="https://www.ea.com/en-au/legal/privacy-and-cookie-policy"
+                link-title="Privacy &amp; Cookie Policy (Your Privacy Rights)"
+                link-text="Privacy &amp; Cookie Policy (Your Privacy Rights)"
+                text-color="dark"
+                unresolved
+            >
+                <a
+                    href="https://www.ea.com/en-au/legal/privacy-and-cookie-policy"
+                    title="Privacy &amp; Cookie Policy (Your Privacy Rights)"
+                >Privacy &amp; Cookie Policy (Your Privacy Rights)</a>
+            </ea-link>
+        
+        <ea-content-loader
+            slot="link"
+            content-url="https://www.ea.com/ccpa/footer-link"
+        >
+        </ea-content-loader>
+        
+    </ea-network-legal>
+    
+<ea-elements-loader elements="ea-truste">
+</ea-elements-loader>
+
+
+<script async>
+
+        function createElement(id, hidden) {
+            const element = document.createElement("div");
+
+            element.id = id;
+            element.hidden = hidden;
+
+            return element;
+        }
+
+        function createScriptTag() {
+            const script = document.createElement("script");
+            let src = `//consent.trustarc.com/notice?domain=ea.com&c=teconsent&js=nj&noticeType=bb&text=true&gtm=1`;
+
+            if (shouldAutoShowCookiePreferences()) {
+                src = src + "&behavior=expressed";
+            }
+
+            script.src = src;
+            script.setAttribute("crossorigin", "");
+
+            return script;
+        }
+
+        function shouldAutoShowCookiePreferences() {
+            const showCookiePreferencesParam = "show=cookiePreferences";
+            const urlSearchParams = window.location.search.slice(1).split("&");
+
+            return urlSearchParams.includes(showCookiePreferencesParam);
+        }
+
+        function isLocalNDS(componentUrlPrefix) {
+            return componentUrlPrefix && componentUrlPrefix.includes('local');
+        }
+
+        function isNDSBranch(componentUrlPrefix) {
+            return componentUrlPrefix && componentUrlPrefix.includes('branch');
+        }
+
+        function isNDSVersionGreaterOrEqual(componentUrlPrefix) {
+            let ndsVersion = componentUrlPrefix && componentUrlPrefix.match('/release\/([^\/]*)/')[1];
+            let isGreaterOrEqual = ndsVersion && ndsVersion.localeCompare("4.40.5", undefined, { numeric: true, sensitivity: 'base' });
+
+            return isGreaterOrEqual >= 0;
+        }
+
+        const componentUrlPrefix = window.nds.componentUrlPrefix;
+
+        /**
+         * Check for backwards compatibility with NDS version greater or equal to when TrustArc was integrated
+         */
+        if (
+            isLocalNDS(componentUrlPrefix) ||
+            isNDSBranch(componentUrlPrefix) ||
+            isNDSVersionGreaterOrEqual(componentUrlPrefix)
+        )
+        {
+            const trustArcScript = createScriptTag();
+            const elements = document.createDocumentFragment();
+
+            elements.appendChild(createElement("consent_blackbar", false));
+            elements.appendChild(createElement("teconsent", true));
+            elements.appendChild(trustArcScript);
+
+            document.body.appendChild(elements);
+        }
+
+</script>
+<ea-truste
+    unresolved
+    slot="truste"
+    
+        domain="ea.com"
+    
+>
+    <div>
+        
+            <a href="https://privacy.truste.com/privacy-seal/validation?rid=f1a11c5d-0232-4077-8498-2e69a38c1335" target="_blank">
+                <img style="border: none" src="//privacy-policy.truste.com/privacy-seal/seal?rid=f1a11c5d-0232-4077-8498-2e69a38c1335" alt="TRUSTe"/>
+            </a>
+        
+    </div>
+</ea-truste>
+
+</ea-network-footer>
+
+
+
+            
+        
+    
+
+
+</footer>
+<ea-player player-endpoint="/user-data"></ea-player>
+
+
+    
+        
+            
+                
+<ea-elements-loader elements="ea-modal">
+</ea-elements-loader>
+<ea-modal
+    modal
+    unresolved
+    
+        id="eacomagegate"
+    
+    
+        theme="dark"
+    
+    
+>
+    
+<ea-elements-loader elements="ea-age-gate">
+</ea-elements-loader>
+<ea-age-gate
+    unresolved
+    slot="age-gate"
+    id="eacomagegate"
+    
+        age="18"
+    
+    
+        error="You are not eligible to view this content."
+    
+    
+    
+        message="Please provide your birth date. "
+    
+>
+    
+        
+<ea-elements-loader elements="ea-date-field">
+</ea-elements-loader>
+<ea-date-field
+    
+        slot="date-field"
+    
+    
+        type="date"
+    
+    
+    
+    
+    
+    
+        text-color="light"
+    
+    
+    
+        month-placeholder="MM"
+    
+    
+        day-placeholder="DD"
+    
+    
+        year-placeholder="YYYY"
+    
+    
+    
+        label-text="Enter your birthdate"
+    
+    
+    
+    unresolved
+>
+</ea-date-field>
+
+    
+    
+        
+<ea-elements-loader elements="ea-submit">
+</ea-elements-loader>
+<ea-submit
+    unresolved
+    
+        slot="submit"
+    
+    
+        value-text="Submit"
+    
+    
+        text-color="light"
+    
+    
+    
+></ea-submit>
+
+    
+</ea-age-gate>
+
+</ea-modal>
+
+            
+        
+    
+
+
+
+
+    
+        
+            
+                <script src="//pl.ea.com/release/4.46.0/elements/browser-support.min.js"></script>
+<script>
+    eaBrowserSupport.requiredFeatures = 'picture';
+    eaBrowserSupport.requiredHeading = 'Sorry, this browser is not supported';
+    eaBrowserSupport.requiredText = 'Please download a supported browser to view this webpage.';
+    eaBrowserSupport.recommendedFeatures = 'cssgrid';
+    eaBrowserSupport.recommendedText = 'This browser is not recommended and the webpage may not display properly.';
+    eaBrowserSupport.ctas = [{"text":"Download Chrome","url":"https://www.google.com/chrome/"},{"text":"Download Firefox","url":"https://www.mozilla.org/firefox/new/"},{"text":"Download Edge","url":"https://www.microsoft.com/edge"}];
+    eaBrowserSupport.dismissText = 'Dismiss';
+    eaBrowserSupport.svgLogo = '';
+    eaBrowserSupport.init();
+</script>
+
+            
+        
+    
+
+
+
+
+    <ea-type-kit kit-url="//use.typekit.net/jjd6ead.js"></ea-type-kit>
+
+
+    <noscript><img src="https://www.ea.com/akam/13/pixel_fa228cb?a=dD00ZGI1ODhjYWRhY2FlOWY3NzlhMTFlODEyYTdhY2JkYjNmYTk2MzI4JmpzPW9mZg==" style="visibility: hidden; position: absolute; left: -999px; top: -999px;" /></noscript></body>
+</html>
+
