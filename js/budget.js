@@ -39,7 +39,4 @@ document.getElementById('btn-calculate-total').addEventListener('click', functio
 
     const displayTotalExpence = document.getElementById('showCost2');
     displayTotalExpence.innerText = totalExpence;
-
-
-
 })

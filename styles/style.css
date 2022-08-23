@@ -12,7 +12,6 @@ h1 {
 .hero-image {
     background-image: url("/images/hu9ho1q1ihtxl0o7sldn.jpg");
     background-color: #cccccc;
-    /* filter: contrast(150%); */
     height: 450px;
     width: 100%;
     background-position: center;

@@ -6,7 +6,6 @@ function playerSelector(ele1, ele2) {
         const displayName = document.getElementById('container');
         const p = document.createElement('li');
         p.innerText = playeNameValue;
-        // li.classList.add('lolo');
         displayName.appendChild(p);
         const button_click = document.getElementById(ele2);
         button_click.setAttribute('disabled', true);
